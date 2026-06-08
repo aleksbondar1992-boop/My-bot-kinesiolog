@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
-SYSTEM_PROMPT = "Ты помощник кинезиолога Александра Бондаря. УТП: устранение боли за 1 приём или бесплатно. Отвечай на русском. Для записи направляй к @alexbond9232."
+SYSTEM_PROMPT = "Ты помощник кинезиолога  Александра Бондаря. УТП: устранение боли за 1 приём или бесплатно. Отвечай на русском. Для записи направляй к @alexbond9232."
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Привет! Я помощник кинезиолога Александра Бондаря. Задайте любой вопрос о здоровье!")
