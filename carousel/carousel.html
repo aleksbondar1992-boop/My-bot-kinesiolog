@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карусель · Отёки · Александр Бондарь</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+
+  :root{
+    --yellow:#FFD400;
+    --bg:#0c0c0c;
+    --panel:#111111;
+  }
+
+  body{
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:60px;
+    padding:60px 0;
+    font-family:'Roboto',Arial,sans-serif;
+  }
+
+  .cap{ color:#666; font-size:18px; font-family:'Roboto',sans-serif; }
+
+  /* ===== базовый слайд 1080x1350 (4:5) ===== */
+  .slide{
+    width:1080px;
+    height:1350px;
+    position:relative;
+    overflow:hidden;
+    background:var(--bg);
+    flex-shrink:0;
+  }
+
+  .head-cond{ font-family:'Oswald','Arial Narrow',Impact,sans-serif; }
+
+  /* нижняя подпись-бренд */
+  .brand{
+    position:absolute;
+    bottom:34px; left:46px;
+    font-family:'Oswald',sans-serif;
+    font-weight:500;
+    font-size:24px;
+    letter-spacing:2px;
+    color:rgba(255,255,255,.55);
+    text-transform:uppercase;
+    z-index:30;
+  }
+  .brand b{ color:var(--yellow); font-weight:700; }
+  .pagenum{
+    position:absolute;
+    bottom:34px; right:46px;
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    font-size:24px;
+    color:rgba(255,255,255,.45);
+    letter-spacing:2px;
+    z-index:30;
+  }
+
+  /* ================= SLIDE 1 — HOOK ================= */
+  #slide1 .ph{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+  #slide1 .grad{
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom,
+      rgba(0,0,0,.78) 0%, rgba(0,0,0,.30) 24%,
+      rgba(0,0,0,.10) 46%, rgba(0,0,0,.55) 74%, rgba(0,0,0,.94) 100%);
+  }
+  #slide1 .topbar{
+    position:absolute; top:46px; left:46px; right:46px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Oswald',sans-serif; font-weight:500;
+    font-size:22px; letter-spacing:3px; text-transform:uppercase;
+    color:rgba(255,255,255,.75); z-index:20;
+  }
+  #slide1 .topbar .ychip{
+    background:var(--yellow); color:#000; font-weight:700;
+    padding:6px 16px; letter-spacing:2px; font-size:20px;
+  }
+  #slide1 .hook{
+    position:absolute; left:46px; right:46px; bottom:150px; z-index:20;
+  }
+  #slide1 .hook .l1{
+    font-family:'Oswald',sans-serif; font-weight:600;
+    font-size:78px; line-height:.98; color:#fff; text-transform:uppercase;
+    letter-spacing:-1px;
+  }
+  #slide1 .hook .l2{
+    font-family:'Oswald',sans-serif; font-weight:700;
+    font-size:128px; line-height:.92; color:var(--yellow); text-transform:uppercase;
+    letter-spacing:-2px; text-shadow:0 6px 30px rgba(0,0,0,.5);
+  }
+  #slide1 .hook .sub{
+    margin-top:22px; font-family:'Roboto',sans-serif; font-weight:300;
+    font-size:30px; color:rgba(255,255,255,.92); line-height:1.35; max-width:880px;
+  }
+  #slide1 .hook .sub b{ font-weight:700; color:#fff; }
+  #slide1 .swipe{
+    position:absolute; bottom:86px; left:46px; z-index:25;
+    display:flex; align-items:center; gap:14px;
+    font-family:'Oswald',sans-serif; font-weight:500; font-size:26px;
+    letter-spacing:3px; text-transform:uppercase; color:var(--yellow);
+  }
+  #slide1 .swipe .arrow{ font-size:30px; }
+
+  /* ================= SLIDE 2 — ПРОБЛЕМА ================= */
+  #slide2 .ph{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; }
+  #slide2 .grad{
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom,
+      rgba(0,0,0,.86) 0%, rgba(0,0,0,.35) 26%,
+      rgba(0,0,0,.05) 45%, rgba(0,0,0,.65) 72%, rgba(0,0,0,.96) 100%);
+  }
+  #slide2 .topki{
+    position:absolute; top:50px; left:46px; z-index:20;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:24px;
+    letter-spacing:4px; text-transform:uppercase; color:var(--yellow);
+  }
+  #slide2 .ttl{
+    position:absolute; top:108px; left:46px; right:60px; z-index:20;
+  }
+  #slide2 .ttl .a{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:96px;
+    line-height:.94; color:#fff; text-transform:uppercase; letter-spacing:-1px;
+  }
+  #slide2 .ttl .b{ color:var(--yellow); }
+  #slide2 .panel{
+    position:absolute; left:46px; right:46px; bottom:130px; z-index:20;
+  }
+  #slide2 .panel .line{
+    width:70px; height:5px; background:var(--yellow); margin-bottom:28px;
+  }
+  #slide2 .panel p{
+    font-family:'Roboto',sans-serif; font-weight:300; font-size:34px;
+    line-height:1.42; color:#fff;
+  }
+  #slide2 .panel p b{ font-weight:700; color:var(--yellow); }
+
+  /* ============ SLIDE 3 / 4 — split (text top / photo bottom) ============ */
+  .split .txtzone{
+    position:absolute; top:0; left:0; right:0; height:770px;
+    padding:64px 56px 0; z-index:10;
+  }
+  .split .photozone{
+    position:absolute; left:0; right:0; bottom:0; height:580px;
+    background:#000; overflow:hidden;
+  }
+  .split .photozone img{ width:100%; height:100%; object-fit:contain; object-position:center; }
+  .split .photozone .tape{
+    position:absolute; top:0; left:0; right:0; height:6px; background:var(--yellow); z-index:5;
+  }
+  .split .photozone .badge{
+    position:absolute; top:24px; left:28px; z-index:6;
+    background:rgba(0,0,0,.65); color:#fff; font-family:'Oswald',sans-serif;
+    font-weight:600; font-size:22px; letter-spacing:3px; padding:7px 18px; text-transform:uppercase;
+  }
+  .split .photozone .badge.y{ background:var(--yellow); color:#000; }
+  .split .eyebrow{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:26px;
+    letter-spacing:4px; text-transform:uppercase; color:var(--yellow); margin-bottom:18px;
+  }
+  .split .title{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:78px;
+    line-height:.95; text-transform:uppercase; color:#fff; letter-spacing:-1px; margin-bottom:34px;
+  }
+  .split .title em{ font-style:normal; color:var(--yellow); }
+
+  /* список причин (slide3) */
+  .reasons{ display:flex; flex-direction:column; gap:20px; }
+  .reasons .r{ display:flex; align-items:flex-start; gap:22px; }
+  .reasons .r .n{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:46px; color:var(--yellow);
+    line-height:.9; min-width:54px;
+  }
+  .reasons .r .t{
+    font-family:'Roboto',sans-serif; font-size:29px; color:rgba(255,255,255,.92); line-height:1.28; padding-top:4px;
+  }
+  .reasons .r .t b{ color:#fff; font-weight:700; }
+
+  /* slide4 points */
+  .points{ display:flex; flex-direction:column; gap:22px; margin-top:6px; }
+  .points .p{ display:flex; align-items:flex-start; gap:20px;
+    font-family:'Roboto',sans-serif; font-size:31px; color:rgba(255,255,255,.92); line-height:1.3; }
+  .points .p .x{ color:var(--yellow); font-weight:700; font-size:34px; line-height:1.1; }
+  .ruleblock{
+    margin-top:30px; padding:26px 30px; background:rgba(255,212,0,.10);
+    border-left:6px solid var(--yellow);
+    font-family:'Roboto',sans-serif; font-size:30px; color:#fff; line-height:1.4;
+  }
+  .ruleblock b{ color:var(--yellow); font-weight:700; }
+
+  /* ============ SLIDE 5 — соц.доказательство (скрин) ============ */
+  #slide5{ background:#0a0a0a; }
+  #slide5 .topbar{
+    position:absolute; top:0; left:0; right:0; height:130px; z-index:20;
+    display:flex; flex-direction:column; justify-content:center; padding:0 56px;
+    background:linear-gradient(to bottom, #0a0a0a 55%, rgba(10,10,10,0));
+  }
+  #slide5 .topbar .k{ font-family:'Oswald',sans-serif; font-weight:600; font-size:24px;
+    letter-spacing:4px; color:var(--yellow); text-transform:uppercase; }
+  #slide5 .topbar .h{ font-family:'Oswald',sans-serif; font-weight:700; font-size:54px;
+    color:#fff; text-transform:uppercase; line-height:1; margin-top:6px; }
+  #slide5 .shot{
+    position:absolute; top:120px; left:0; right:0; bottom:120px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #slide5 .shot img{ max-width:96%; max-height:100%; object-fit:contain;
+    border-radius:10px; box-shadow:0 14px 50px rgba(0,0,0,.6); }
+  #slide5 .botbar{
+    position:absolute; bottom:0; left:0; right:0; height:120px; z-index:20;
+    display:flex; align-items:center; padding:0 56px;
+    background:linear-gradient(to top, #0a0a0a 55%, rgba(10,10,10,0));
+  }
+  #slide5 .botbar p{ font-family:'Roboto',sans-serif; font-weight:300; font-size:30px; color:#fff; }
+  #slide5 .botbar p b{ color:var(--yellow); font-weight:700; }
+
+  /* ============ SLIDE 6 — CTA / анонс Reels ============ */
+  #slide6{ background:var(--bg); }
+  #slide6 .tape{ position:absolute; top:0; left:0; right:0; height:8px; background:var(--yellow); }
+  #slide6 .shotzone{
+    position:absolute; top:8px; left:0; right:0; height:560px; background:#000; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #slide6 .shotzone img{ max-width:100%; max-height:100%; object-fit:contain; }
+  #slide6 .shotzone .lab{
+    position:absolute; top:22px; left:28px; background:var(--yellow); color:#000;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:22px; letter-spacing:2px;
+    padding:7px 16px; text-transform:uppercase;
+  }
+  #slide6 .cta{
+    position:absolute; top:568px; left:0; right:0; bottom:0;
+    padding:40px 56px 0; text-align:center;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  #slide6 .cta .soon{ font-family:'Oswald',sans-serif; font-weight:600; font-size:26px;
+    letter-spacing:5px; color:var(--yellow); text-transform:uppercase; }
+  #slide6 .cta .big{
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:96px; color:#fff;
+    text-transform:uppercase; line-height:.95; margin-top:8px;
+  }
+  #slide6 .cta .big em{ font-style:normal; color:var(--yellow); }
+  #slide6 .cta .desc{
+    margin-top:26px; font-family:'Roboto',sans-serif; font-weight:300; font-size:33px;
+    color:rgba(255,255,255,.92); line-height:1.42; max-width:880px;
+  }
+  #slide6 .cta .desc b{ color:var(--yellow); font-weight:700; }
+  #slide6 .cta .box{
+    margin-top:30px; background:var(--yellow); color:#000;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:36px; letter-spacing:2px;
+    padding:20px 46px; text-transform:uppercase;
+  }
+  #slide6 .cta .contacts{
+    margin-top:26px; font-family:'Roboto',sans-serif; font-size:26px; color:rgba(255,255,255,.55); line-height:1.6;
+  }
+  #slide6 .cta .contacts b{ color:rgba(255,255,255,.85); font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 ================= -->
+<div class="cap">SLIDE 1 — HOOK</div>
+<div class="slide" id="slide1">
+  <img class="ph" src="photo_hero.jpeg" alt="">
+  <div class="grad"></div>
+  <div class="topbar">
+    <span>Кинезиолог · Александр Бондарь</span>
+    <span class="ychip">Реальный результат</span>
+  </div>
+  <div class="hook">
+    <div class="l1">Это не жир —</div>
+    <div class="l2">это&nbsp;отёк</div>
+    <div class="sub"><b>Живот не уходит</b> даже на диете и в зале?<br>Дело не в калориях. Дело в лимфе.</div>
+  </div>
+  <div class="swipe">Листай <span class="arrow">→</span> разбор внутри</div>
+  <div class="brand">@<b>alexbond9232</b></div>
+  <div class="pagenum">01</div>
+</div>
+
+<!-- ================= SLIDE 2 ================= -->
+<div class="cap">SLIDE 2 — ПРОБЛЕМА</div>
+<div class="slide" id="slide2">
+  <img class="ph" src="photo_belly.jpeg" alt="">
+  <div class="grad"></div>
+  <div class="topki">Почему не уходят отёки</div>
+  <div class="ttl">
+    <div class="a">Отёк — это<br>не «<span class="b">много<br>воды</span>»</div>
+  </div>
+  <div class="panel">
+    <div class="line"></div>
+    <p>Чаще тело <b>не выводит жидкость</b>, потому что лимфа плохо двигается. А лимфа зависит от питания, дыхания, движения, сна и стресса.</p>
+  </div>
+  <div class="brand">@<b>alexbond9232</b></div>
+  <div class="pagenum">02</div>
+</div>
+
+<!-- ================= SLIDE 3 ================= -->
+<div class="cap">SLIDE 3 — ПРИЧИНЫ ОТЁЧНОСТИ</div>
+<div class="slide split" id="slide3">
+  <div class="txtzone">
+    <div class="eyebrow">Разбор без диет и спортзала</div>
+    <div class="title">5 причин,<br>почему <em>отёки стоят</em></div>
+    <div class="reasons">
+      <div class="r"><div class="n">1</div><div class="t"><b>Питание.</b> Сахар, глютен, молочка, кофе и алкоголь делают лимфу густой</div></div>
+      <div class="r"><div class="n">2</div><div class="t"><b>Стресс.</b> Нервы в напряжении — тело держит жидкость</div></div>
+      <div class="r"><div class="n">3</div><div class="t"><b>Дыхание.</b> Лимфа не качается сама — ей нужны мышцы и дыхание</div></div>
+      <div class="r"><div class="n">4</div><div class="t"><b>Сон.</b> Лёг позже 22:30 — лимфа не успевает разгрузиться</div></div>
+      <div class="r"><div class="n">5</div><div class="t"><b>Зажатый таз и поясница.</b> Блок в теле — жидкость стоит внизу</div></div>
+    </div>
+  </div>
+  <div class="photozone">
+    <div class="tape"></div>
+    <div class="badge y">Запусти лимфу — уйдут отёки</div>
+    <img src="photo_back.jpeg" alt="">
+  </div>
+  <div class="brand">@<b>alexbond9232</b></div>
+  <div class="pagenum">03</div>
+</div>
+
+<!-- ================= SLIDE 4 ================= -->
+<div class="cap">SLIDE 4 — ПОЧЕМУ НЕ ПОЛУЧАЕТСЯ СКИНУТЬ</div>
+<div class="slide split" id="slide4">
+  <div class="txtzone">
+    <div class="eyebrow">Важно понять</div>
+    <div class="title">Ходишь в зал,<br>а <em>объёмы стоят?</em></div>
+    <div class="points">
+      <div class="p"><span class="x">✕</span><div>Потеешь на тренировках, а вес и сантиметры не двигаются</div></div>
+      <div class="p"><span class="x">✕</span><div>Лимфа стоит — мышцы не включаются, нагрузка идёт «вхолостую»</div></div>
+      <div class="p"><span class="x">✕</span><div>Телу не хватает не нагрузки, а правильного включения мышц</div></div>
+    </div>
+    <div class="ruleblock"><b>Правило:</b> сначала запускаем лимфу — потом наращиваем нагрузку. Иначе топчешься на месте.</div>
+  </div>
+  <div class="photozone">
+    <div class="tape"></div>
+    <img src="photo_woman_side.jpeg" alt="">
+  </div>
+  <div class="brand">@<b>alexbond9232</b></div>
+  <div class="pagenum">04</div>
+</div>
+
+<!-- ================= SLIDE 5 ================= -->
+<div class="cap">SLIDE 5 — ОТЗЫВ / СОЦ.ДОКАЗАТЕЛЬСТВО</div>
+<div class="slide" id="slide5">
+  <div class="topbar">
+    <span class="k">Скрин от клиента</span>
+    <span class="h">Разница — 1 месяц</span>
+  </div>
+  <div class="shot"><img src="photo_result_chat.jpeg" alt=""></div>
+  <div class="botbar"><p>Без жёстких диет — просто <b>запустили лимфу</b></p></div>
+  <div class="pagenum" style="color:rgba(255,255,255,.6)">05</div>
+</div>
+
+<!-- ================= SLIDE 6 ================= -->
+<div class="cap">SLIDE 6 — CTA / АНОНС REELS</div>
+<div class="slide" id="slide6">
+  <div class="tape"></div>
+  <div class="shotzone">
+    <div class="lab">День 3</div>
+    <img src="photo_jeans.jpeg" alt="">
+  </div>
+  <div class="cta">
+    <div class="soon">Уже скоро</div>
+    <div class="big">Через <em>2 дня</em><br>выйдет Reels</div>
+    <div class="desc">В нём — ссылка на <b>чек-лист по лимфодренажу</b> «Почему не уходят отёки». Сохрани пост, чтобы не потерять 👈</div>
+    <div class="box">Напиши в личку: «ОТЕКИ»</div>
+    <div class="contacts"><b>@alexbond9232</b> · Telegram &nbsp;·&nbsp; kinesio-alexbond.ru</div>
+  </div>
+</div>
+
+</body>
+</html>
