@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+  *{ margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root{ --yellow:#FFD400; --bg:#0d0d0d; }
+  body{ background:#000; display:flex; justify-content:center; padding:0; font-family:'Roboto',sans-serif; }
+
+  .slide{ width:1080px; height:1350px; position:relative; overflow:hidden; background:var(--bg); flex-shrink:0; }
+  .tape{ position:absolute; top:0; left:0; right:0; height:8px; background:var(--yellow); z-index:5; }
+
+  .txtzone{ position:absolute; top:0; left:0; right:0; height:748px; padding:60px 56px 0; }
+  .eyebrow{ font-family:'Oswald',sans-serif; font-weight:600; font-size:26px; letter-spacing:4px;
+    text-transform:uppercase; color:var(--yellow); margin-bottom:18px; }
+  .title{ font-family:'Oswald',sans-serif; font-weight:700; font-size:66px; line-height:.96;
+    text-transform:uppercase; color:#fff; letter-spacing:-1px; }
+  .title em{ font-style:normal; color:var(--yellow); }
+  .subline{ margin-top:22px; margin-bottom:26px; font-family:'Roboto',sans-serif; font-weight:300;
+    font-size:30px; color:rgba(255,255,255,.8); }
+  .subline b{ color:#fff; font-weight:700; }
+
+  .causes{ display:grid; grid-template-columns:1fr 1fr; column-gap:30px; row-gap:18px; }
+  .cause{ display:flex; align-items:flex-start; gap:14px; }
+  .cause .dot{ width:14px; height:14px; border-radius:50%; background:var(--yellow); margin-top:8px; flex-shrink:0; }
+  .cause .t{ font-family:'Roboto',sans-serif; font-weight:400; font-size:26px; color:rgba(255,255,255,.92); line-height:1.22; }
+  .cause .t b{ color:#fff; font-weight:700; }
+
+  .photozone{ position:absolute; left:0; right:0; bottom:0; height:602px; background:#000; overflow:hidden; }
+  .photozone img{ width:100%; height:100%; object-fit:cover; object-position:center 42%; }
+  .photozone .ptape{ position:absolute; top:0; left:0; right:0; height:5px; background:var(--yellow); z-index:6; }
+  .resbadge{ position:absolute; top:26px; left:28px; z-index:8; background:var(--yellow); color:#000;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:30px; letter-spacing:2px; padding:10px 22px;
+    text-transform:uppercase; }
+  .lbl{ position:absolute; bottom:26px; z-index:8; font-family:'Oswald',sans-serif; font-weight:700;
+    font-size:26px; letter-spacing:3px; padding:8px 20px; text-transform:uppercase; }
+  .lbl.do{ left:28px; background:rgba(0,0,0,.7); color:#fff; }
+  .lbl.posle{ right:28px; background:var(--yellow); color:#000; }
+  .midline{ position:absolute; top:0; bottom:0; left:50%; width:2px; background:rgba(255,212,0,.55); z-index:7; }
+
+  .brand{ position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:9;
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:24px; letter-spacing:2px;
+    color:#fff; text-transform:uppercase; background:rgba(0,0,0,.55); padding:6px 18px; }
+  .brand b{ color:var(--yellow); }
+</style>
+</head>
+<body>
+<div class="slide" id="slide1">
+  <div class="tape"></div>
+  <div class="txtzone">
+    <div class="eyebrow">Разбор кинезиолога</div>
+    <div class="title">Живот после родов —<br>это <em>не всегда жир</em></div>
+    <div class="subline">Причины часто <b>глубже</b>, чем кажется:</div>
+    <div class="causes">
+      <div class="cause"><span class="dot"></span><span class="t"><b>Стресс</b> и нервная система</span></div>
+      <div class="cause"><span class="dot"></span><span class="t">Спазм <b>диафрагмы</b></span></div>
+      <div class="cause"><span class="dot"></span><span class="t">Шов от <b>кесарева</b></span></div>
+      <div class="cause"><span class="dot"></span><span class="t">Зажат <b>блуждающий нерв</b></span></div>
+      <div class="cause"><span class="dot"></span><span class="t">Шов после <b>операции</b></span></div>
+      <div class="cause"><span class="dot"></span><span class="t">Зажат <b>позвоночник</b></span></div>
+      <div class="cause"><span class="dot"></span><span class="t">Опущение <b>кишечника</b></span></div>
+      <div class="cause"><span class="dot"></span><span class="t">Спазм <b>тазового дна</b></span></div>
+      <div class="cause"><span class="dot"></span><span class="t"><b>Диастаз</b> и слабость мышц пресса</span></div>
+    </div>
+  </div>
+  <div class="photozone">
+    <div class="ptape"></div>
+    <img src="photo_rody.jpeg" alt="">
+    <div class="midline"></div>
+    <div class="resbadge">Результат за 1 приём</div>
+    <div class="lbl do">До</div>
+    <div class="lbl posle">После</div>
+    <div class="brand">@<b>alexbond9232</b></div>
+  </div>
+</div>
+</body>
+</html>
