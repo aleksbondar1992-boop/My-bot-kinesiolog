@@ -258,6 +258,19 @@
     margin-top:26px; font-family:'Roboto',sans-serif; font-size:26px; color:rgba(255,255,255,.55); line-height:1.6;
   }
   #slide6 .cta .contacts b{ color:rgba(255,255,255,.85); font-weight:700; }
+
+  /* ===== плашки результата ===== */
+  #slide1 .statline{ display:flex; align-items:center; gap:22px; margin-top:26px; }
+  #slide1 .statline .num{ background:var(--yellow); color:#000; font-family:'Oswald',sans-serif;
+    font-weight:700; font-size:70px; line-height:1; padding:8px 24px; white-space:nowrap; }
+  #slide1 .statline .cap{ font-family:'Oswald',sans-serif; font-weight:600; font-size:30px;
+    line-height:1.12; color:#fff; text-transform:uppercase; letter-spacing:1px; text-shadow:0 2px 14px rgba(0,0,0,.7); }
+
+  #slide2 .s2stat{ position:absolute; right:46px; top:556px; z-index:25; text-align:right; }
+  #slide2 .s2stat .n{ display:inline-block; background:var(--yellow); color:#000;
+    font-family:'Oswald',sans-serif; font-weight:700; font-size:92px; line-height:.95; padding:6px 24px; }
+  #slide2 .s2stat .c{ margin-top:14px; font-family:'Oswald',sans-serif; font-weight:600; font-size:30px;
+    color:#fff; text-transform:uppercase; line-height:1.18; text-shadow:0 2px 14px rgba(0,0,0,.85); }
 </style>
 </head>
 <body>
@@ -274,7 +287,11 @@
   <div class="hook">
     <div class="l1">Это не жир —</div>
     <div class="l2">это&nbsp;отёк</div>
-    <div class="sub"><b>Живот не уходит</b> даже на диете и в зале?<br>Дело не в калориях. Дело в лимфе.</div>
+    <div class="statline">
+      <span class="num">−17 см</span>
+      <span class="cap">за 13 дней<br>без диет и тренировок</span>
+    </div>
+    <div class="sub"><b>Живот не уходит</b> даже на диете и в зале? Дело не в калориях — в лимфе.</div>
   </div>
   <div class="swipe">Листай <span class="arrow">→</span> разбор внутри</div>
   <div class="brand">@<b>alexbond9232</b></div>
@@ -289,6 +306,10 @@
   <div class="topki">Почему не уходят отёки</div>
   <div class="ttl">
     <div class="a">Отёк — это<br>не «<span class="b">много<br>воды</span>»</div>
+  </div>
+  <div class="s2stat">
+    <div class="n">−7 см</div>
+    <div class="c">живота за 2 приёма<br>+ ушла отёчность</div>
   </div>
   <div class="panel">
     <div class="line"></div>
@@ -314,7 +335,7 @@
   </div>
   <div class="photozone">
     <div class="tape"></div>
-    <div class="badge y">Запусти лимфу — уйдут отёки</div>
+    <div class="badge y">Результат за 1 приём: −5 см</div>
     <img src="photo_back.jpeg" alt="">
   </div>
   <div class="brand">@<b>alexbond9232</b></div>
@@ -336,7 +357,8 @@
   </div>
   <div class="photozone">
     <div class="tape"></div>
-    <img src="photo_woman_side.jpeg" alt="">
+    <div class="badge y">За 2 приёма: −5 кг</div>
+    <img src="photo_blue_side.jpeg" alt="">
   </div>
   <div class="brand">@<b>alexbond9232</b></div>
   <div class="pagenum">04</div>
@@ -346,11 +368,11 @@
 <div class="cap">SLIDE 5 — ОТЗЫВ / СОЦ.ДОКАЗАТЕЛЬСТВО</div>
 <div class="slide" id="slide5">
   <div class="topbar">
-    <span class="k">Скрин от клиента</span>
-    <span class="h">Разница — 1 месяц</span>
+    <span class="k">Скрин от клиента · день 3</span>
+    <span class="h">−7 см за 3 дня</span>
   </div>
-  <div class="shot"><img src="photo_result_chat.jpeg" alt=""></div>
-  <div class="botbar"><p>Без жёстких диет — просто <b>запустили лимфу</b></p></div>
+  <div class="shot"><img src="photo_jeans_day3.jpeg" alt=""></div>
+  <div class="botbar"><p>Без диет и тренировок — просто <b>запустили лимфу</b></p></div>
   <div class="pagenum" style="color:rgba(255,255,255,.6)">05</div>
 </div>
 
@@ -359,8 +381,8 @@
 <div class="slide" id="slide6">
   <div class="tape"></div>
   <div class="shotzone">
-    <div class="lab">День 3</div>
-    <img src="photo_jeans.jpeg" alt="">
+    <div class="lab">Разница 1 месяц</div>
+    <img src="photo_result_chat.jpeg" alt="">
   </div>
   <div class="cta">
     <div class="soon">Уже скоро</div>
