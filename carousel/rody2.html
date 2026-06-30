@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru" class="wbold">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+  *{ margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root{ --bg:#0e0e0e; --line:rgba(255,255,255,.22); --muted:rgba(255,255,255,.62); }
+  body{ background:#000; display:flex; justify-content:center; font-family:'Montserrat',sans-serif; }
+
+  .slide{ width:1080px; height:1350px; position:relative; overflow:hidden; background:var(--bg); flex-shrink:0; }
+
+  .txtzone{ position:absolute; top:0; left:0; right:0; height:752px; padding:64px 60px 0; }
+
+  .eyebrow{ font-family:'Montserrat',sans-serif; font-weight:500; font-size:23px; letter-spacing:6px;
+    text-transform:uppercase; color:var(--muted); margin-bottom:26px; }
+
+  .title{ font-family:'Montserrat',sans-serif; text-transform:uppercase; color:#fff; line-height:1.02; }
+  .title .accent{ color:#fff; }
+  html.wbold .title{ font-weight:800; font-size:68px; letter-spacing:-1.5px; }
+  html.wthin .title{ font-weight:300; font-size:62px; letter-spacing:0.5px; }
+  html.wthin .title b{ font-weight:600; }
+  html.wbold .title b{ font-weight:800; }
+
+  .divider{ height:1px; background:var(--line); margin:30px 0 20px; }
+  .subline{ font-family:'Montserrat',sans-serif; font-size:30px; color:var(--muted); margin-bottom:30px; }
+  html.wbold .subline{ font-weight:600; }
+  html.wthin .subline{ font-weight:400; }
+  .subline b{ color:#fff; }
+
+  .causes{ display:grid; grid-template-columns:1fr 1fr; column-gap:34px; row-gap:20px; }
+  .cause{ display:flex; align-items:flex-start; gap:14px; }
+  .cause .dash{ color:rgba(255,255,255,.45); font-weight:300; line-height:1.15; }
+  .cause .t{ font-family:'Montserrat',sans-serif; font-size:26px; color:rgba(255,255,255,.92); line-height:1.2; }
+  html.wbold .cause .t{ font-weight:500; }
+  html.wthin .cause .t{ font-weight:300; }
+  .cause .t b{ color:#fff; }
+  html.wbold .cause .t b{ font-weight:700; }
+  html.wthin .cause .t b{ font-weight:600; }
+
+  .photozone{ position:absolute; left:0; right:0; bottom:0; height:598px; background:#000; overflow:hidden; }
+  .photozone img{ width:100%; height:100%; object-fit:cover; object-position:center 42%; }
+  .photozone .top-grad{ position:absolute; top:0; left:0; right:0; height:140px;
+    background:linear-gradient(to bottom, rgba(0,0,0,.55), transparent); }
+  .photozone .bot-grad{ position:absolute; bottom:0; left:0; right:0; height:150px;
+    background:linear-gradient(to top, rgba(0,0,0,.65), transparent); }
+
+  .resbadge{ position:absolute; top:30px; left:60px; z-index:8; color:#fff;
+    font-family:'Montserrat',sans-serif; font-weight:600; font-size:24px; letter-spacing:3px; text-transform:uppercase; }
+  .resbadge .u{ display:block; width:54px; height:2px; background:#fff; margin-top:10px; opacity:.8; }
+
+  .midline{ position:absolute; top:0; bottom:0; left:50%; width:1px; background:rgba(255,255,255,.35); z-index:7; }
+
+  .lbl{ position:absolute; bottom:30px; z-index:8; font-family:'Montserrat',sans-serif; font-weight:600;
+    font-size:23px; letter-spacing:4px; text-transform:uppercase; color:#fff; }
+  .lbl.do{ left:60px; }
+  .lbl.posle{ right:60px; }
+
+  .brand{ position:absolute; bottom:30px; left:50%; transform:translateX(-50%); z-index:9;
+    font-family:'Montserrat',sans-serif; font-weight:600; font-size:22px; letter-spacing:2px;
+    color:rgba(255,255,255,.85); text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="slide" id="slide1">
+  <div class="txtzone">
+    <div class="eyebrow">Разбор кинезиолога</div>
+    <div class="title">Живот после родов —<br>это <b>не всегда жир</b></div>
+    <div class="divider"></div>
+    <div class="subline"><b>9 причин</b>, почему он выпирает:</div>
+    <div class="causes">
+      <div class="cause"><span class="dash">—</span><span class="t"><b>Стресс</b> и нервная система</span></div>
+      <div class="cause"><span class="dash">—</span><span class="t">Спазм <b>диафрагмы</b></span></div>
+      <div class="cause"><span class="dash">—</span><span class="t">Шов от <b>кесарева</b></span></div>
+      <div class="cause"><span class="dash">—</span><span class="t">Зажат <b>блуждающий нерв</b></span></div>
+      <div class="cause"><span class="dash">—</span><span class="t">Шов после <b>операции</b></span></div>
+      <div class="cause"><span class="dash">—</span><span class="t">Зажат <b>позвоночник</b></span></div>
+      <div class="cause"><span class="dash">—</span><span class="t">Опущение <b>кишечника</b></span></div>
+      <div class="cause"><span class="dash">—</span><span class="t">Спазм <b>тазового дна</b></span></div>
+      <div class="cause"><span class="dash">—</span><span class="t"><b>Диастаз</b> и слабость пресса</span></div>
+    </div>
+  </div>
+  <div class="photozone">
+    <img src="photo_rody.jpeg" alt="">
+    <div class="top-grad"></div>
+    <div class="bot-grad"></div>
+    <div class="midline"></div>
+    <div class="resbadge">Результат за 1 приём<span class="u"></span></div>
+    <div class="lbl do">До</div>
+    <div class="lbl posle">После</div>
+    <div class="brand">@alexbond9232</div>
+  </div>
+</div>
+</body>
+</html>
