@@ -56,19 +56,16 @@
   #s1 .swipe{ position:absolute; bottom:88px; left:56px; z-index:25; font-weight:600; font-size:24px;
     letter-spacing:4px; text-transform:uppercase; color:var(--silver); }
 
-  /* SLIDE 2 */
-  #s2 .grad{ background:linear-gradient(to bottom, rgba(0,0,0,.86) 0%, rgba(0,0,0,.32) 26%,
-    rgba(0,0,0,.05) 45%, rgba(0,0,0,.62) 72%, rgba(0,0,0,.96) 100%); }
-  #s2 .eyebrow{ position:absolute; top:50px; left:56px; z-index:20; }
-  #s2 .ttl{ position:absolute; top:108px; left:56px; right:60px; z-index:20; font-weight:800; font-size:90px;
-    line-height:.96; color:#fff; text-transform:uppercase; letter-spacing:-1.5px; }
-  #s2 .s2stat{ position:absolute; right:56px; top:556px; z-index:25; text-align:right; }
-  #s2 .s2stat .n{ font-weight:800; font-size:104px; line-height:.92; color:#fff; }
-  #s2 .s2stat .c{ margin-top:10px; font-weight:600; font-size:27px; color:rgba(255,255,255,.92);
-    text-transform:uppercase; line-height:1.2; }
-  #s2 .panel{ position:absolute; left:56px; right:56px; bottom:130px; z-index:20; }
-  #s2 .panel p{ font-weight:300; font-size:33px; line-height:1.42; color:#fff; }
-  #s2 .panel p b{ font-weight:700; }
+  /* SLIDE 2 (split — фото снизу видно полностью) */
+  #s2 .txtzone{ height:646px; }
+  #s2 .photozone{ height:704px; }
+  #s2 .title{ font-size:80px; }
+  #s2 .s2p{ font-weight:300; font-size:32px; line-height:1.44; color:#fff; }
+  #s2 .s2p b{ font-weight:700; }
+  #s2 .s2stat-row{ margin-top:26px; display:flex; align-items:center; gap:22px; }
+  #s2 .s2stat-row .n{ font-weight:800; font-size:72px; line-height:1; color:#fff; }
+  #s2 .s2stat-row .bar{ width:3px; height:64px; background:linear-gradient(#f2f2f2,#8f8f8f); }
+  #s2 .s2stat-row .c{ font-weight:600; font-size:25px; line-height:1.2; color:var(--muted); text-transform:uppercase; }
 
   /* ---------- split slides (3,4): text top / photo bottom ---------- */
   .split .txtzone{ position:absolute; top:0; left:0; right:0; height:770px; padding:62px 56px 0; }
@@ -149,13 +146,21 @@
 </div>
 
 <div class="cap">SLIDE 2</div>
-<div class="slide fb" id="s2">
-  <img class="ph" src="photo_belly.jpeg" alt="">
-  <div class="grad"></div>
-  <div class="eyebrow">Почему не уходят отёки</div>
-  <div class="ttl">Отёк — это<br>не «<span class="silver">много<br>воды</span>»</div>
-  <div class="s2stat"><div class="n">−7 см</div><div class="c">живота за 2 приёма<br>+ ушла отёчность</div></div>
-  <div class="panel"><p>Чаще тело <b>не выводит жидкость</b>, потому что лимфа плохо двигается. А лимфа зависит от питания, дыхания, движения, сна и стресса.</p></div>
+<div class="slide split" id="s2">
+  <div class="txtzone">
+    <div class="eyebrow">Почему не уходят отёки</div>
+    <div class="title">Отёк — это<br>не «<span class="silver">много воды</span>»</div>
+    <div class="divider"></div>
+    <p class="s2p">Чаще тело <b>не выводит жидкость</b>, потому что лимфа плохо двигается. А лимфа зависит от питания, дыхания, движения, сна и стресса.</p>
+    <div class="s2stat-row">
+      <span class="n">−7 см</span><span class="bar"></span>
+      <span class="c">живота за 2 приёма<br>+ ушла отёчность</span>
+    </div>
+  </div>
+  <div class="photozone">
+    <div class="rchip">Живот до / после</div>
+    <img src="photo_belly.jpeg" alt="">
+  </div>
   <div class="brand">@alexbond9232</div>
   <div class="pagenum">02</div>
 </div>
