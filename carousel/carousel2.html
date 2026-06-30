@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+  *{ margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
+  :root{
+    --bg:#0a0a0a; --panel:#0e0e0e;
+    --muted:rgba(255,255,255,.60);
+    --line:rgba(255,255,255,.18);
+    --silver:#c6c6c6;
+  }
+  body{ background:#000; display:flex; flex-direction:column; align-items:center; gap:54px;
+    padding:54px 0; font-family:'Montserrat',sans-serif; }
+  .cap{ color:#555; font-size:18px; }
+
+  .slide{ width:1080px; height:1350px; position:relative; overflow:hidden; background:var(--bg); flex-shrink:0; }
+
+  /* metallic helpers */
+  .silver{ background:linear-gradient(180deg,#ffffff 0%,#d2d2d2 48%,#8f8f8f 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sline{ height:2px; width:64px; background:linear-gradient(90deg,#f2f2f2,#8f8f8f); }
+  .tape{ position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,#8f8f8f,#f2f2f2,#8f8f8f); z-index:6; }
+
+  .brand{ position:absolute; bottom:34px; left:56px; font-weight:600; font-size:22px;
+    letter-spacing:2px; color:rgba(255,255,255,.7); text-transform:uppercase; z-index:30; }
+  .pagenum{ position:absolute; bottom:34px; right:56px; font-weight:600; font-size:22px;
+    letter-spacing:2px; color:rgba(255,255,255,.4); z-index:30; }
+
+  .eyebrow{ font-weight:600; font-size:23px; letter-spacing:5px; text-transform:uppercase;
+    color:var(--silver); }
+
+  /* ---------- full-bleed photo slides (1,2) ---------- */
+  .fb .ph{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .fb .grad{ position:absolute; inset:0; }
+  .topbar{ position:absolute; top:46px; left:56px; right:56px; display:flex; justify-content:space-between;
+    align-items:center; z-index:20; }
+  .topbar .who{ font-weight:600; font-size:21px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.78); }
+  .chip-o{ border:1px solid var(--silver); color:#fff; font-weight:600; font-size:19px; letter-spacing:2px;
+    padding:7px 16px; text-transform:uppercase; }
+
+  /* SLIDE 1 */
+  #s1 .grad{ background:linear-gradient(to bottom, rgba(0,0,0,.75) 0%, rgba(0,0,0,.25) 22%,
+    rgba(0,0,0,.08) 46%, rgba(0,0,0,.6) 72%, rgba(0,0,0,.95) 100%); }
+  #s1 .hook{ position:absolute; left:56px; right:56px; bottom:130px; z-index:20; }
+  #s1 .l1{ font-weight:700; font-size:56px; line-height:1; color:#fff; text-transform:uppercase; letter-spacing:-1px; }
+  #s1 .l2{ font-weight:800; font-size:88px; line-height:.95; text-transform:uppercase; letter-spacing:-2px; }
+  #s1 .stat{ display:flex; align-items:center; gap:22px; margin-top:24px; }
+  #s1 .stat .num{ font-weight:800; font-size:60px; line-height:1; color:#fff; }
+  #s1 .stat .cap{ font-weight:600; font-size:24px; line-height:1.2; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+  #s1 .stat .bar{ width:3px; height:60px; background:linear-gradient(#f2f2f2,#8f8f8f); }
+  #s1 .sub{ margin-top:20px; font-weight:300; font-size:27px; color:rgba(255,255,255,.9); line-height:1.35; }
+  #s1 .sub b{ font-weight:700; }
+  #s1 .swipe{ position:absolute; bottom:88px; left:56px; z-index:25; font-weight:600; font-size:24px;
+    letter-spacing:4px; text-transform:uppercase; color:var(--silver); }
+
+  /* SLIDE 2 */
+  #s2 .grad{ background:linear-gradient(to bottom, rgba(0,0,0,.86) 0%, rgba(0,0,0,.32) 26%,
+    rgba(0,0,0,.05) 45%, rgba(0,0,0,.62) 72%, rgba(0,0,0,.96) 100%); }
+  #s2 .eyebrow{ position:absolute; top:50px; left:56px; z-index:20; }
+  #s2 .ttl{ position:absolute; top:108px; left:56px; right:60px; z-index:20; font-weight:800; font-size:90px;
+    line-height:.96; color:#fff; text-transform:uppercase; letter-spacing:-1.5px; }
+  #s2 .s2stat{ position:absolute; right:56px; top:556px; z-index:25; text-align:right; }
+  #s2 .s2stat .n{ font-weight:800; font-size:104px; line-height:.92; color:#fff; }
+  #s2 .s2stat .c{ margin-top:10px; font-weight:600; font-size:27px; color:rgba(255,255,255,.92);
+    text-transform:uppercase; line-height:1.2; }
+  #s2 .panel{ position:absolute; left:56px; right:56px; bottom:130px; z-index:20; }
+  #s2 .panel p{ font-weight:300; font-size:33px; line-height:1.42; color:#fff; }
+  #s2 .panel p b{ font-weight:700; }
+
+  /* ---------- split slides (3,4): text top / photo bottom ---------- */
+  .split .txtzone{ position:absolute; top:0; left:0; right:0; height:770px; padding:62px 56px 0; }
+  .split .photozone{ position:absolute; left:0; right:0; bottom:0; height:580px; background:#000; overflow:hidden; }
+  .split .photozone img{ width:100%; height:100%; object-fit:contain; }
+  .split .rchip{ position:absolute; top:24px; left:28px; z-index:6; border:1px solid var(--silver);
+    background:rgba(0,0,0,.55); color:#fff; font-weight:600; font-size:23px; letter-spacing:2px;
+    padding:9px 18px; text-transform:uppercase; }
+  .split .title{ font-weight:800; font-size:74px; line-height:.98; text-transform:uppercase; color:#fff;
+    letter-spacing:-1px; margin:16px 0 28px; }
+  .split .divider{ height:1px; background:var(--line); margin-bottom:28px; }
+
+  .reasons{ display:flex; flex-direction:column; gap:18px; }
+  .reasons .r{ display:flex; gap:20px; align-items:flex-start; }
+  .reasons .r .n{ font-weight:700; font-size:34px; color:var(--silver); line-height:1; min-width:42px; }
+  .reasons .r .t{ font-weight:400; font-size:28px; color:rgba(255,255,255,.92); line-height:1.25; }
+  .reasons .r .t b{ font-weight:700; color:#fff; }
+
+  .points{ display:flex; flex-direction:column; gap:20px; }
+  .points .p{ display:flex; gap:18px; align-items:flex-start; font-weight:400; font-size:30px;
+    color:rgba(255,255,255,.92); line-height:1.3; }
+  .points .p .x{ color:var(--silver); font-weight:700; font-size:30px; }
+  .ruleblock{ margin-top:26px; padding:24px 28px; background:rgba(255,255,255,.05);
+    border-left:3px solid var(--silver); font-weight:400; font-size:29px; color:#fff; line-height:1.4; }
+  .ruleblock b{ font-weight:700; }
+
+  /* ---------- screenshot slides (5,6) ---------- */
+  #s5{ background:#080808; }
+  #s5 .head{ position:absolute; top:0; left:0; right:0; height:140px; z-index:20; padding:0 56px;
+    display:flex; flex-direction:column; justify-content:center;
+    background:linear-gradient(to bottom,#080808 55%, transparent); }
+  #s5 .head .k{ font-weight:600; font-size:22px; letter-spacing:4px; color:var(--silver); text-transform:uppercase; }
+  #s5 .head .h{ font-weight:800; font-size:58px; color:#fff; text-transform:uppercase; line-height:1; margin-top:6px; }
+  #s5 .shot{ position:absolute; top:128px; left:0; right:0; bottom:120px; display:flex; align-items:center; justify-content:center; }
+  #s5 .shot img{ max-width:96%; max-height:100%; object-fit:contain; border-radius:10px; box-shadow:0 14px 50px rgba(0,0,0,.6); }
+  #s5 .foot{ position:absolute; bottom:0; left:0; right:0; height:120px; z-index:20; padding:0 56px;
+    display:flex; align-items:center; background:linear-gradient(to top,#080808 55%, transparent); }
+  #s5 .foot p{ font-weight:300; font-size:29px; color:#fff; } #s5 .foot p b{ font-weight:700; }
+
+  #s6 .shotzone{ position:absolute; top:5px; left:0; right:0; height:560px; background:#000; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; }
+  #s6 .shotzone img{ max-width:100%; max-height:100%; object-fit:contain; }
+  #s6 .shotzone .lab{ position:absolute; top:22px; left:28px; border:1px solid var(--silver);
+    background:rgba(0,0,0,.5); color:#fff; font-weight:600; font-size:20px; letter-spacing:2px;
+    padding:8px 16px; text-transform:uppercase; }
+  #s6 .cta{ position:absolute; top:568px; left:0; right:0; bottom:0; padding:42px 56px 0;
+    display:flex; flex-direction:column; align-items:center; text-align:center; }
+  #s6 .cta .soon{ font-weight:600; font-size:24px; letter-spacing:5px; color:var(--silver); text-transform:uppercase; }
+  #s6 .cta .big{ font-weight:800; font-size:90px; color:#fff; text-transform:uppercase; line-height:.96; margin-top:8px; }
+  #s6 .cta .desc{ margin-top:24px; font-weight:300; font-size:31px; color:rgba(255,255,255,.9); line-height:1.42; max-width:880px; }
+  #s6 .cta .desc b{ font-weight:700; }
+  #s6 .cta .box{ margin-top:28px; background:#fff; color:#000; font-weight:700; font-size:33px;
+    letter-spacing:1px; padding:20px 44px; text-transform:uppercase; }
+  #s6 .cta .contacts{ margin-top:24px; font-weight:400; font-size:24px; color:rgba(255,255,255,.5); letter-spacing:1px; }
+  #s6 .cta .contacts b{ color:rgba(255,255,255,.85); font-weight:700; }
+</style>
+</head>
+<body>
+
+<div class="cap">SLIDE 1</div>
+<div class="slide fb" id="s1">
+  <img class="ph" src="photo_hero.jpeg" alt="">
+  <div class="grad"></div>
+  <div class="topbar"><span class="who">Кинезиолог · Александр Бондарь</span><span class="chip-o">Реальный результат</span></div>
+  <div class="hook">
+    <div class="l1">Это не жир —</div>
+    <div class="l2 silver">это&nbsp;отёк</div>
+    <div class="stat">
+      <span class="num">−17 см</span>
+      <span class="bar"></span>
+      <span class="cap">за 13 дней<br>без диет и тренировок</span>
+    </div>
+    <div class="sub"><b>Живот не уходит</b> даже на диете и в зале? Дело не в калориях — в лимфе.</div>
+  </div>
+  <div class="swipe">Листай →</div>
+  <div class="brand">@alexbond9232</div>
+  <div class="pagenum">01</div>
+</div>
+
+<div class="cap">SLIDE 2</div>
+<div class="slide fb" id="s2">
+  <img class="ph" src="photo_belly.jpeg" alt="">
+  <div class="grad"></div>
+  <div class="eyebrow">Почему не уходят отёки</div>
+  <div class="ttl">Отёк — это<br>не «<span class="silver">много<br>воды</span>»</div>
+  <div class="s2stat"><div class="n">−7 см</div><div class="c">живота за 2 приёма<br>+ ушла отёчность</div></div>
+  <div class="panel"><p>Чаще тело <b>не выводит жидкость</b>, потому что лимфа плохо двигается. А лимфа зависит от питания, дыхания, движения, сна и стресса.</p></div>
+  <div class="brand">@alexbond9232</div>
+  <div class="pagenum">02</div>
+</div>
+
+<div class="cap">SLIDE 3</div>
+<div class="slide split" id="s3">
+  <div class="txtzone">
+    <div class="eyebrow">Разбор без диет и спортзала</div>
+    <div class="title">5 причин,<br>почему <span class="silver">отёки стоят</span></div>
+    <div class="divider"></div>
+    <div class="reasons">
+      <div class="r"><div class="n">01</div><div class="t"><b>Питание.</b> Сахар, глютен, молочка, кофе и алкоголь делают лимфу густой</div></div>
+      <div class="r"><div class="n">02</div><div class="t"><b>Стресс.</b> Нервы в напряжении — тело держит жидкость</div></div>
+      <div class="r"><div class="n">03</div><div class="t"><b>Дыхание.</b> Лимфа не качается сама — ей нужны мышцы и дыхание</div></div>
+      <div class="r"><div class="n">04</div><div class="t"><b>Сон.</b> Лёг позже 22:30 — лимфа не успевает разгрузиться</div></div>
+      <div class="r"><div class="n">05</div><div class="t"><b>Зажатый таз и поясница.</b> Блок в теле — жидкость стоит внизу</div></div>
+    </div>
+  </div>
+  <div class="photozone">
+    <div class="rchip">Результат за 1 приём · −5 см</div>
+    <img src="photo_back.jpeg" alt="">
+  </div>
+  <div class="brand">@alexbond9232</div>
+  <div class="pagenum">03</div>
+</div>
+
+<div class="cap">SLIDE 4</div>
+<div class="slide split" id="s4">
+  <div class="txtzone">
+    <div class="eyebrow">Важно понять</div>
+    <div class="title">Ходишь в зал,<br>а <span class="silver">объёмы стоят?</span></div>
+    <div class="divider"></div>
+    <div class="points">
+      <div class="p"><span class="x">✕</span><div>Потеешь на тренировках, а вес и сантиметры не двигаются</div></div>
+      <div class="p"><span class="x">✕</span><div>Лимфа стоит — мышцы не включаются, нагрузка идёт «вхолостую»</div></div>
+      <div class="p"><span class="x">✕</span><div>Телу не хватает не нагрузки, а правильного включения мышц</div></div>
+    </div>
+    <div class="ruleblock"><b>Правило:</b> сначала запускаем лимфу — потом наращиваем нагрузку. Иначе топчешься на месте.</div>
+  </div>
+  <div class="photozone">
+    <div class="rchip">За 2 приёма · −5 кг</div>
+    <img src="photo_blue_side.jpeg" alt="">
+  </div>
+  <div class="brand">@alexbond9232</div>
+  <div class="pagenum">04</div>
+</div>
+
+<div class="cap">SLIDE 5</div>
+<div class="slide" id="s5">
+  <div class="head"><span class="k">Скрин от клиента · день 3</span><span class="h">−7 см за 3 дня</span></div>
+  <div class="shot"><img src="photo_jeans_day3.jpeg" alt=""></div>
+  <div class="foot"><p>Без диет и тренировок — просто <b>запустили лимфу</b></p></div>
+  <div class="pagenum" style="color:rgba(255,255,255,.55)">05</div>
+</div>
+
+<div class="cap">SLIDE 6</div>
+<div class="slide" id="s6">
+  <div class="tape"></div>
+  <div class="shotzone"><div class="lab">Разница 1 месяц</div><img src="photo_result_chat.jpeg" alt=""></div>
+  <div class="cta">
+    <div class="soon">Уже скоро</div>
+    <div class="big">Через <span class="silver">2 дня</span><br>выйдет Reels</div>
+    <div class="desc">В нём — ссылка на <b>чек-лист по лимфодренажу</b> «Почему не уходят отёки». Сохрани пост, чтобы не потерять.</div>
+    <div class="box">Напиши в личку: «ОТЕКИ»</div>
+    <div class="contacts"><b>@alexbond9232</b> · Telegram · kinesio-alexbond.ru</div>
+  </div>
+</div>
+
+</body>
+</html>
