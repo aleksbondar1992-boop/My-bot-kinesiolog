@@ -12,11 +12,30 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 SYSTEM_PROMPT = "Ты помощник кинезиолога Александра Бондаря. УТП: устранение боли за 1 приём или бесплатно. Отвечай на русском. Для записи направляй к @alexbond9232."
 
+GUIDES = {
+    "отек": {
+        "file": "assets/documents/checklist_oteki.pdf",
+        "caption": "Вот чек-лист «Почему не уходят отёки». Изучи и напиши, если останутся вопросы!",
+    },
+}
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Привет! Я помощник кинезиолога Александра Бондаря. Задайте вопрос!")
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_message = update.message.text
+    text_lower = user_message.lower()
+
+    for keyword, guide in GUIDES.items():
+        if keyword in text_lower:
+            try:
+                with open(guide["file"], "rb") as doc:
+                    await update.message.reply_document(document=doc, caption=guide["caption"])
+            except Exception as e:
+                logger.error(f"Guide send error: {e}")
+                await update.message.reply_text("Ошибка отправки гайда. Напишите: @alexbond9232")
+            return
+
     try:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
         payload = {"contents": [{"parts": [{"text": SYSTEM_PROMPT + "\n\nВопрос: " + user_message}]}]}
