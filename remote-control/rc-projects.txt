@@ -8,36 +8,27 @@
 #             (вкладка Code). Можно по-русски.
 #  Путь      — папка проекта на компьютере.
 #
+#  %USERPROFILE% подставляется автоматически — это твоя личная папка
+#  (C:\Users\ТвоёИмя). Вписывать своё имя вручную не нужно.
+#
 #  Строки, начинающиеся с #, игнорируются.
 #
 # ------------------------------------------------------------
-#  ВНИМАНИЕ: ПРОВЕРЬ ПУТЬ
+#  Список собран по твоему Google Drive. Папки лежат там рядом с
+#  My Games и Bandicam — то есть в «Документах» Windows.
 #
-#  Названия папок ниже взяты из твоего Google Drive — там они лежат
-#  рядом с My Games, Bandicam и Call of Duty, а это стандартное
-#  содержимое папки «Документы» Windows. Значит, на компьютере они
-#  почти наверняка тут:
-#
-#      C:\Users\ИМЯ\Documents\
-#
-#  Замени ИМЯ на своё имя пользователя Windows. Узнать его:
-#  открой Проводник, вставь в адресную строку  %USERPROFILE%
-#  и нажми Enter — увидишь полный путь.
-#
-#  Если папки синхронизируются через Google Диск, путь может быть
-#  другим, например:  G:\Мой диск\...  — тогда подставь его.
+#  Если какой-то папки на компьютере не окажется, start.bat честно
+#  напишет "folder not found" и путь — тогда просто поправь строку.
 # ============================================================
 
-Кинезиолог|C:\Users\ИМЯ\Documents\My-bot-kinesiolog
-Создание ботов|C:\Users\ИМЯ\Documents\expert-bot-skeleton
-Второй мозг|C:\Users\ИМЯ\Documents\Второй мозг
-
-# Раскомментируй (убери #) те, что тоже нужны с телефона:
-# Codex|C:\Users\ИМЯ\Documents\Codex
-# Видео про диафрагму|C:\Users\ИМЯ\Documents\diaphragm-video
-# Бондарь|C:\Users\ИМЯ\Documents\bondar
-# Арина|C:\Users\ИМЯ\Documents\arina
+Кинезиолог|%USERPROFILE%\Documents\My-bot-kinesiolog
+Создание ботов|%USERPROFILE%\Documents\expert-bot-skeleton
+Второй мозг|%USERPROFILE%\Documents\Второй мозг
+Codex|%USERPROFILE%\Documents\Codex
+Видео про диафрагму|%USERPROFILE%\Documents\diaphragm-video
+Бондарь|%USERPROFILE%\Documents\bondar
+Арина|%USERPROFILE%\Documents\arina
 
 # Персонального астролога я не нашёл ни на Google Drive, ни на GitHub,
 # ни в Notion. Если он есть — допиши строку сам:
-# Персональный астролог|C:\путь\к\папке
+# Персональный астролог|%USERPROFILE%\Documents\astrolog

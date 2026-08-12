@@ -75,7 +75,13 @@ foreach ($line in (Get-Content -LiteralPath $ConfigFile -Encoding UTF8)) {
     }
 
     $name = $parts[0].Trim() -replace '"', ''
-    $projectPath = $parts[1].Trim().TrimEnd('\') -replace '"', ''
+
+    # Expanding %USERPROFILE% and friends lets one config file work on any
+    # machine without anyone editing their Windows user name into it. An
+    # unknown variable is left as-is and fails the folder check below with a
+    # path the user can actually read.
+    $projectPath = [System.Environment]::ExpandEnvironmentVariables(
+        ($parts[1].Trim() -replace '"', '')).TrimEnd('\')
 
     if (-not $name -or -not $projectPath) {
         Write-Host "[!] Line ${lineNumber}: empty name or path" -ForegroundColor Yellow
