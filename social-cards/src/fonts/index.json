@@ -1,0 +1,51 @@
+{
+ "Manrope": [
+  {
+   "w": "300",
+   "s": "normal",
+   "file": "Manrope-300-normal.woff"
+  },
+  {
+   "w": "400",
+   "s": "normal",
+   "file": "Manrope-400-normal.woff"
+  },
+  {
+   "w": "500",
+   "s": "normal",
+   "file": "Manrope-500-normal.woff"
+  },
+  {
+   "w": "600",
+   "s": "normal",
+   "file": "Manrope-600-normal.woff"
+  },
+  {
+   "w": "700",
+   "s": "normal",
+   "file": "Manrope-700-normal.woff"
+  },
+  {
+   "w": "800",
+   "s": "normal",
+   "file": "Manrope-800-normal.woff"
+  }
+ ],
+ "Playfair Display": [
+  {
+   "w": "500",
+   "s": "italic",
+   "file": "PlayfairDisplay-500-italic.woff"
+  },
+  {
+   "w": "500",
+   "s": "normal",
+   "file": "PlayfairDisplay-500-normal.woff"
+  },
+  {
+   "w": "700",
+   "s": "normal",
+   "file": "PlayfairDisplay-700-normal.woff"
+  }
+ ]
+}
