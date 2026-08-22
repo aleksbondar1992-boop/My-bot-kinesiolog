@@ -311,6 +311,6 @@ for sheet in wb.worksheets:
     sheet.freeze_panes = None
 
 out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                   "Питание_БГБКБС_меню.xlsx")
+                   "pitanie-bgbkbs-menu.xlsx")
 wb.save(out)
 print("saved:", out)

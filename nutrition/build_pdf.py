@@ -270,7 +270,7 @@ disc.setStyle(TableStyle([
 A(disc)
 
 out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                   "Питание_БГБКБС_меню.pdf")
+                   "pitanie-bgbkbs-menu.pdf")
 doc = BaseDocTemplate(out, pagesize=A4,
                       leftMargin=LM, rightMargin=RM, topMargin=TM, bottomMargin=BM,
                       title=D.TITLE, author="Анатомия Здоровья · Нутрициология",
