@@ -1,0 +1,8 @@
+# Личные данные — не должны попадать в репозиторий
+config.local.json
+*.session
+*.session-journal
+tg_export_session*
+.venv/
+__pycache__/
+ошибки.log
