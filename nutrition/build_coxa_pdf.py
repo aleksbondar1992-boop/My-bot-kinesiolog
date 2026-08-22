@@ -42,7 +42,7 @@ tdc  = S(name="tdc", fontName="DJ", fontSize=8, leading=10.6, alignment=TA_CENTE
 thsm = S(name="thsm", fontName="DJ-B", fontSize=6.8, leading=8.6,
          textColor=white, alignment=TA_CENTER)
 tdcb = S(name="tdcb", fontName="DJ-B", fontSize=8.5, leading=11, alignment=TA_CENTER)
-body = S(name="body", fontName="DJ", fontSize=9, leading=12.8, spaceAfter=4)
+body_st = S(name="body", fontName="DJ", fontSize=9, leading=12.8, spaceAfter=4)
 
 
 def P(t, s=td):
@@ -106,94 +106,94 @@ def on_page(c, doc):
 
 story = []; A = story.append
 
-# ══════════════════════════ ТИТУЛ + КАРДИО-ПРЕДУПРЕЖДЕНИЕ
 A(Paragraph(D.TITLE, h1))
 A(Paragraph(D.SUBTITLE, sub))
 A(callout(D.CARDIO_WARNING, RED, REDB))
-A(Spacer(1, 8))
+A(Spacer(1, 7))
 
 A(band("1. КЛИНИЧЕСКОЕ ОБОСНОВАНИЕ"))
 A(Spacer(1, 5))
 for i, line in enumerate(D.RATIONALE, 1):
-    A(Paragraph(f"<b>{i}.</b> {line}", body))
-
-A(Spacer(1, 6))
-A(callout(D.CONFLICT_NOTE, ACC, HexColor("#D6A400")))
-
-# ══════════════════════════ РЕЖИМЫ
-A(CondPageBreak(160)); A(Spacer(1, 5))
-A(band("2. ТРИ РЕЖИМА — от одного до трёх приёмов, без перекусов"))
+    A(Paragraph(f"<b>{i}.</b> {line}", body_st))
 A(Spacer(1, 5))
-A(grid(D.MODES_HEAD, D.MODES,
-       [CW * .16, CW * .24, CW * .27, CW * .09, CW * .24],
-       bold_first=True, center=(3,)))
+A(callout(D.CONTROL_NOTE, ACC, HexColor("#D6A400")))
+
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("2. РЕЖИМ — два приёма в день, без перекусов"))
+A(Spacer(1, 5))
+A(grid(D.MODES_HEAD, D.MODES, [CW * .17, CW * .38, CW * .45], bold_first=True))
 A(Paragraph(D.MODES_NOTE, note))
 
-# ══════════════════════════ ЖЁСТКИЕ ОГРАНИЧЕНИЯ
-A(CondPageBreak(160)); A(Spacer(1, 5))
-A(band("3. ШЕСТЬ ЖЁСТКИХ ОГРАНИЧЕНИЙ — и как каждое выполнено"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("3. СКОЛЬКО ЕСТЬ — граммов нет, есть сигналы тела"))
 A(Spacer(1, 5))
-A(grid(D.LIMITS_HEAD, D.LIMITS, [CW * .04, CW * .30, CW * .66], center=(0,)))
+A(grid(D.ENOUGH_HEAD, D.ENOUGH, [CW * .33, CW * .34, CW * .33], bold_first=True))
+A(Paragraph(D.ENOUGH_NOTE, note))
 
-# ══════════════════════════ ВАРИАНТ А — МЕНЮ
-A(CondPageBreak(200)); A(Spacer(1, 5))
-A(band("4. ВАРИАНТ А — готовая таблица на 14 дней. Смотришь и делаешь"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("4. ТАРЕЛКА — ориентир, а не измерение"))
 A(Spacer(1, 5))
-menu_rows = []
-for i, (z, o, u) in enumerate(D.MENU, 1):
-    total = z[1] + o[1] + u[1]
-    menu_rows.append([f"День {i}",
-                      f"{z[0]}\n<b>белок {z[1]} г</b>",
-                      f"{o[0]}\n<b>белок {o[1]} г</b>",
-                      f"{u[0]}\n<b>белок {u[1]} г</b>",
-                      f"{total} г"])
-A(grid(D.MENU_HEAD, menu_rows,
-       [CW * .07, CW * .29, CW * .29, CW * .28, CW * .07],
-       bold_first=True, center=(4,)))
+A(grid(D.PLATE_HEAD, D.PLATE, [CW * .14, CW * .43, CW * .43], bold_first=True))
+A(Paragraph(D.PLATE_NOTE, note))
+
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("5. КАК ГОТОВИТЬ — мягко, тепло, без сырого"))
+A(Spacer(1, 5))
+A(grid(D.COOK_HEAD, D.COOKING, [CW * .20, CW * .42, CW * .38], bold_first=True))
+
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("6. ПРОТОКОЛ ВОССТАНОВЛЕНИЯ СЛИЗИСТЫХ"))
+A(Spacer(1, 5))
+A(Paragraph("Продукты, которые работают на слизистую. Должны быть в рационе постоянно, "
+            "а не курсом", h3))
+A(grid(D.MUCOSA_HEAD, D.MUCOSA, [CW * .26, CW * .38, CW * .36], bold_first=True))
+A(Spacer(1, 5))
+A(Paragraph("Чего в этом протоколе нет — и почему именно у этого клиента", h3))
+mo = grid(D.MUCOSA_OUT_HEAD, D.MUCOSA_OUT, [CW * .30, CW * .70], bold_first=True)
+mo.setStyle(TableStyle([("BACKGROUND", (0, i), (0, i), RED)
+                        for i in range(1, len(D.MUCOSA_OUT) + 1)]))
+A(mo)
+
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("7. МЯГКАЯ ОЧИСТКА КИШЕЧНИКА — псиллиум по нарастающей"))
+A(Spacer(1, 5))
+A(grid(D.CLEAN_HEAD, D.CLEANSE, [CW * .18, CW * .22, CW * .60], bold_first=True))
+A(Paragraph(D.CLEANSE_NOTE, note))
+
+A(CondPageBreak(200)); A(Spacer(1, 6))
+A(band("8. ВАРИАНТ А — готовая таблица на 14 дней"))
+A(Spacer(1, 5))
+menu_rows = [[f"День {i}", m[0], m[1], m[2]] for i, m in enumerate(D.MENU, 1)]
+A(grid(D.MENU_HEAD, menu_rows, [CW * .07, CW * .31, CW * .31, CW * .31], bold_first=True))
 for n in D.MENU_NOTES:
     A(Paragraph("• " + n, note))
 
-# ══════════════════════════ ВАРИАНТ Б — СВОБОДА
-A(CondPageBreak(200)); A(Spacer(1, 5))
-A(band("5. ВАРИАНТ Б — без таблицы. Пять правил и конструктор"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("9. ВАРИАНТ Б — без таблицы. Собери тарелку сам"))
 A(Spacer(1, 5))
-A(Paragraph("Правило тарелки — общий объём порции 500 г", h3))
-A(grid(D.PLATE_HEAD, D.PLATE, [CW * .17, CW * .13, CW * .20, CW * .50], bold_first=True))
-
-A(Spacer(1, 6))
-A(Paragraph("Пять правил, которые заменяют всю таблицу", h3))
-rules = [[str(i), t, b] for i, (t, b) in enumerate(D.RULES5, 1)]
-A(grid(["№", "Правило", "Что это значит"], rules,
-       [CW * .04, CW * .28, CW * .68], center=(0,)))
-
-A(Spacer(1, 6))
-A(Paragraph("Конструктор: собери тарелку сам", h3))
 A(grid(D.CONSTRUCTOR_HEAD, D.CONSTRUCTOR, [CW * .22, CW * .78], bold_first=True))
 
-# ══════════════════════════ ЗАМЕНЫ
-A(CondPageBreak(170)); A(Spacer(1, 5))
-A(band("6. ЗАМЕНЫ — чем закрыть сахар, глютен и молочку"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("10. ЗАМЕНЫ — чем закрыть сахар, глютен и молочку"))
 A(Spacer(1, 5))
 for gname, rows in D.SWAP_GROUPS:
     A(KeepTogether([Paragraph(gname, h3),
-                    grid(D.SWAP_HEAD, rows, [CW * .27, CW * .50, CW * .23])]))
+                    grid(D.SWAP_HEAD, rows, [CW * .26, CW * .51, CW * .23])]))
     A(Spacer(1, 4))
 
-# ══════════════════════════ ИСКЛЮЧЕНИЯ
-A(CondPageBreak(170)); A(Spacer(1, 5))
-A(band("7. ИСКЛЮЧЕНИЯ — и причина по каждому пункту"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("11. ИСКЛЮЧЕНИЯ — и причина по каждому пункту"))
 A(Spacer(1, 5))
-ex = grid(D.EXCL_HEAD, D.EXCLUSIONS, [CW * .34, CW * .66], bold_first=True)
+ex = grid(D.EXCL_HEAD, D.EXCLUSIONS, [CW * .33, CW * .67], bold_first=True)
 ex.setStyle(TableStyle([("BACKGROUND", (0, i), (0, i), RED)
                         for i in range(1, len(D.EXCLUSIONS) + 1)]))
 A(ex)
 
-# ══════════════════════════ ПОКУПКИ
-A(CondPageBreak(170)); A(Spacer(1, 5))
-A(band("8. ПОКУПКИ — Пятёрочка · Перекрёсток · ВкусВилл · рынок"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("12. ПОКУПКИ — рынок в приоритете"))
 A(Spacer(1, 5))
 sh = grid(D.SHOP_HEAD, D.SHOP,
-          [CW * .14, CW * .38, CW * .12, CW * .12, CW * .12, CW * .12],
+          [CW * .13, CW * .39, CW * .12, CW * .12, CW * .12, CW * .12],
           bold_first=True, center=(2, 3, 4, 5), small_head=(2, 3, 4, 5))
 extra = []
 for i, r in enumerate(D.SHOP, 1):
@@ -205,32 +205,29 @@ sh.setStyle(TableStyle(extra))
 A(sh)
 A(Paragraph(D.SHOP_NOTE, note))
 
-# ══════════════════════════ НУТРИЦЕВТИКА
-A(CondPageBreak(170)); A(Spacer(1, 5))
-A(band("9. НУТРИЦЕВТИЧЕСКАЯ ПОДДЕРЖКА — всё только с едой, ничего натощак"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("13. НУТРИЦЕВТИКА — всё только с едой, ничего натощак"))
 A(Spacer(1, 5))
 A(grid(D.SUPP_HEAD, D.SUPPLEMENTS,
-       [CW * .16, CW * .14, CW * .12, CW * .26, CW * .32], bold_first=True))
+       [CW * .15, CW * .15, CW * .13, CW * .25, CW * .32], bold_first=True))
 for n in D.SUPP_NOTES:
     A(Paragraph("• " + n, note))
 
-# ══════════════════════════ АНАЛИЗЫ
-A(CondPageBreak(170)); A(Spacer(1, 5))
-A(band("10. АНАЛИЗЫ К ДОСДАЧЕ — что каждый даст"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("14. АНАЛИЗЫ К ДОСДАЧЕ"))
 A(Spacer(1, 5))
-A(grid(D.LABS_HEAD, D.LABS, [CW * .27, CW * .73], bold_first=True))
+A(grid(D.LABS_HEAD, D.LABS, [CW * .24, CW * .76], bold_first=True))
 
-# ══════════════════════════ КРАСНЫЕ ФЛАГИ
-A(CondPageBreak(170)); A(Spacer(1, 5))
-A(band("11. КРАСНЫЕ ФЛАГИ — когда немедленно к врачу"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("15. КРАСНЫЕ ФЛАГИ — когда немедленно к врачу"))
 A(Spacer(1, 5))
 rf = grid(D.RED_HEAD, D.RED_FLAGS, [CW * .55, CW * .45], bold_first=True)
 rf.setStyle(TableStyle([("BACKGROUND", (0, i), (-1, i), RED)
                         for i in range(1, len(D.RED_FLAGS) + 1)]))
 A(rf)
 
-A(CondPageBreak(150)); A(Spacer(1, 5))
-A(band("12. С ЧЕГО НАЧАТЬ — первая неделя по шагам"))
+A(CondPageBreak(150)); A(Spacer(1, 6))
+A(band("16. С ЧЕГО НАЧАТЬ"))
 A(Spacer(1, 5))
 A(grid(D.START_HEAD, D.START, [CW * .07, CW * .70, CW * .23], center=(0,)))
 
