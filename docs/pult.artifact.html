@@ -104,6 +104,8 @@ h1 .thin{color:var(--muted);font-weight:400;font-style:italic}
 .fact span{font-size:12.5px;color:var(--muted)}
 .fact.is-on{border-left-color:var(--ok)}
 .fact.is-off{border-left-color:var(--accent)}
+.fact.is-pause{border-left-color:var(--warn)}
+.fact.is-crit{border-left-color:var(--crit)}
 
 /* ---------- spine ---------- */
 .spine{position:relative;margin-top:64px;padding-left:34px}
@@ -162,6 +164,7 @@ ul.gaps span.t{color:var(--muted);font-size:13.5px}
 .sev--crit{color:var(--crit);border-color:var(--crit)}
 .sev--warn{color:var(--warn);border-color:var(--warn)}
 .sev--later{color:var(--muted);border-color:var(--line)}
+.sev--pause{color:var(--warn);border-color:var(--warn)}
 
 /* ---------- figure / diagram ---------- */
 figure{margin:0}
@@ -333,12 +336,12 @@ a:focus-visible,.bar:focus-visible{outline:2px solid var(--accent);outline-offse
   <header class="masthead">
     <p class="eyebrow">Кинезиолог Александр Бондарь · август 2026</p>
     <h1>Пульт<br><span class="thin">управление ботами практики</span></h1>
-    <p class="lead">Один экран, из которого живут все боты приёма: Telegram и ВКонтакте, ответы ИИ, заявки на консультацию и расход на модель. Ниже — что уже работает в проде, чего не хватает, как это собирается и где регистрироваться.</p>
+    <p class="lead">Панель с базой на 184 контакта уже работает — она живёт вне этого репозитория. Здесь разобрана вторая половина системы: бот в git, что в нём стоит на паузе до уведомления в Роскомнадзор, что чинить прямо сейчас и как подключить ВКонтакте.</p>
     <div class="strip">
-      <div class="fact is-on"><b>1</b><span>бот в проде</span></div>
+      <div class="fact is-on"><b>184</b><span>контакта в базе панели</span></div>
+      <div class="fact is-pause"><b>пауза</b><span>сбор ПДн — до уведомления в РКН</span></div>
       <div class="fact is-off"><b>1&thinsp;/&thinsp;2</b><span>каналов подключено</span></div>
-      <div class="fact is-off"><b>0</b><span>панели пока нет</span></div>
-      <div class="fact is-on"><b>2.0&nbsp;Flash</b><span>модель Gemini в ответах</span></div>
+      <div class="fact is-crit"><b>8</b><span>коммитов с ключами в истории</span></div>
     </div>
   </header>
 
@@ -347,7 +350,7 @@ a:focus-visible,.bar:focus-visible{outline:2px solid var(--accent);outline-offse
     <!-- 1 -->
     <section class="mark" id="now">
       <h2>Что работает сегодня</h2>
-      <p class="sub">Факты сняты с кода в репозитории <span class="mono">My-bot-kinesiolog</span>, файл <span class="mono">bot.py</span>, а не с презентации.</p>
+      <p class="sub">Разбор касается только кода в репозитории <span class="mono">My-bot-kinesiolog</span>. Панель управления и база контактов — отдельный контур вне git, в этот разбор он не входит.</p>
 
       <div class="grid g2">
         <div class="card">
@@ -361,18 +364,20 @@ a:focus-visible,.bar:focus-visible{outline:2px solid var(--accent);outline-offse
             <dt>Команды</dt><dd class="mono">/start</dd>
             <dt>Секреты</dt><dd>в переменных окружения — в коде ключей нет</dd>
             <dt>Сборка</dt><dd>nixpacks, конфиг пустой — сборка по умолчанию</dd>
+            <dt>Сбор ПДн</dt><dd>выключен намеренно: бот не спрашивает контакты и ничего не пишет в базу</dd>
+            <dt>Панель</dt><dd>вне репозитория, с этим ботом не связана</dd>
           </dl>
         </div>
 
         <div class="card">
-          <h3>Чего не хватает</h3>
+          <h3>Что чинить и что не трогать</h3>
           <ul class="gaps">
-            <li><span class="sev sev--crit">критично</span><span><b>Нет памяти диалога</b><span class="t">Каждое сообщение уходит в модель отдельно. Человек уточняет «а сколько это стоит» — бот уже не знает, о чём речь.</span></span></li>
-            <li><span class="sev sev--crit">критично</span><span><b>Ничего не сохраняется</b><span class="t">Ни одного контакта, ни одного вопроса. Человек написал, ушёл — и он потерян.</span></span></li>
-            <li><span class="sev sev--warn">важно</span><span><b>Нет лимита на расход ИИ</b><span class="t">Один спамер с циклом сообщений — и счёт за API растёт без потолка.</span></span></li>
-            <li><span class="sev sev--warn">важно</span><span><b>Нет ВКонтакте</b><span class="t">Половина аудитории практики сидит в сообществе ВК и до бота не доходит.</span></span></li>
-            <li><span class="sev sev--warn">важно</span><span><b>Любая правка = деплой</b><span class="t">Поменять приветствие или цену в ответах нельзя без коммита и передеплоя.</span></span></li>
-            <li><span class="sev sev--later">потом</span><span><b>Нет запасного сценария</b><span class="t">Gemini не ответил — человек видит «Ошибка» и уходит. Ни повтора, ни второй модели.</span></span></li>
+            <li><span class="sev sev--crit">срочно</span><span><b>Ключи в истории публичного репозитория</b><span class="t">Токен Telegram и ключ Groq лежат открытым текстом в восьми коммитах. Файл удалён, история — нет. Лечится отзывом ключей; чистка истории вторична.</span></span></li>
+            <li><span class="sev sev--warn">важно</span><span><b>Нет потолка расхода на ИИ</b><span class="t">Цикл сообщений от одного пользователя упирается в лимиты провайдера, а не в ваш бюджет.</span></span></li>
+            <li><span class="sev sev--warn">важно</span><span><b>Нет ВКонтакте</b><span class="t">Канал один: аудитория сообщества до бота не доходит.</span></span></li>
+            <li><span class="sev sev--warn">важно</span><span><b>Промпт зашит в код</b><span class="t">УТП и текст ответов лежат в <span class="mono">bot.py</span> — правятся коммитом и передеплоем, а не из панели.</span></span></li>
+            <li><span class="sev sev--pause">пауза</span><span><b>Память диалога и сбор контактов</b><span class="t">Сняты намеренно, до подачи уведомления в РКН. Это не дефект кода, а состояние «выключено до разрешения» — включается вместе с юридической частью.</span></span></li>
+            <li><span class="sev sev--later">потом</span><span><b>Нет запасного сценария</b><span class="t">Gemini не ответил — человек видит «Ошибка». Ни повтора, ни второй модели.</span></span></li>
           </ul>
         </div>
       </div>
@@ -463,7 +468,7 @@ a:focus-visible,.bar:focus-visible{outline:2px solid var(--accent);outline-offse
             <line x1="112" y1="424" x2="142" y2="424" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4"></line>
             <text x="150" y="428" font-size="10.5" fill="currentColor" fill-opacity=".65">управление</text>
           </svg>
-          <figcaption>Сегодня из этой схемы существует только путь «Пациент в TG → ИИ-слой → ответ». Шлюз, ядро, хранилище и панель — то, что предстоит собрать; без хранилища панели просто нечего показывать.</figcaption>
+          <figcaption>Целевая схема. Панель и база у вас уже есть, но с этим ботом не соединены: из репозитория сегодня работает только путь «Пациент в TG → ИИ-слой → ответ». Пунктирная стрелка к ядру — то, чего не хватает, чтобы тексты и лимиты правились из панели, а не коммитом. Ветка к хранилищу включается вместе с уведомлением в РКН.</figcaption>
         </figure>
       </div>
     </section>
@@ -471,7 +476,7 @@ a:focus-visible,.bar:focus-visible{outline:2px solid var(--accent);outline-offse
     <!-- 3 -->
     <section class="mark" id="panel">
       <h2>Панель управления</h2>
-      <p class="sub">Главный экран отвечает на три вопроса за пять секунд: боты живы, сколько людей написало, сколько дошло до заявки. Ниже — макет с демонстрационными числами, не реальная статистика.</p>
+      <p class="sub">Ваша панель с базой на 184 контакта уже работает — её снимка у меня нет, поэтому ниже не она, а предложение по составу экрана: что стоит держать на виду, когда к панели подключены оба бота и оба канала. Числа демонстрационные.</p>
 
       <div class="mock">
         <div class="mock__bar">
@@ -544,7 +549,7 @@ a:focus-visible,.bar:focus-visible{outline:2px solid var(--accent);outline-offse
         <div class="feat__i"><h4>Расходы <em>потолок</em></h4><p>Токены и рубли по дням, лимит на пользователя и на сутки. При достижении потолка бот переходит на готовые ответы, а не на пустой счёт.</p></div>
       </div>
 
-      <div class="note"><b>Важно:</b> числа и графики выше — макет для оценки вида и состава экрана. Реальных данных пока нет: бот ничего не пишет в хранилище, поэтому первый шаг к панели — база, а не вёрстка.</div>
+      <div class="note"><b>Важно:</b> это макет для обсуждения состава экрана, а не снимок вашей панели. Бот из репозитория в неё сейчас не пишет ничего — ни диалогов, ни заявок, поэтому «Расходы» и разбивка по каналам заработают только после того, как бот и панель будут соединены.</div>
     </section>
 
     <!-- 4 -->
@@ -615,28 +620,28 @@ a:focus-visible,.bar:focus-visible{outline:2px solid var(--accent);outline-offse
     <!-- 6 -->
     <section id="plan">
       <h2>Порядок внедрения</h2>
-      <p class="sub">Шаги идут именно в этом порядке: каждый следующий опирается на предыдущий. Панель нельзя сделать раньше базы — ей нечего будет показывать.</p>
+      <p class="sub">Порядок продиктован зависимостями, а не удобством: утечка ключей блокирует всё, а сбор данных блокирован уведомлением в РКН. Средние два шага от юридической части не зависят и делаются параллельно.</p>
 
       <ol class="steps">
         <li>
           <div>
-            <h4>Память и база</h4>
-            <p>Хранение истории диалога и контактов. Бот начинает помнить контекст, а вы — видеть, кто писал. Без этого шага остальное бессмысленно.</p>
-            <span class="when">закрывает два критичных пробела</span>
+            <h4>Отозвать ключи</h4>
+            <p>Новый токен в @BotFather через <span class="mono">/revoke</span>, новый ключ Groq в консоли. Затем — решение по чистке истории репозитория. До отзыва остальные шаги смысла не имеют.</p>
+            <span class="when">сегодня, до всего остального</span>
           </div>
         </li>
         <li>
           <div>
-            <h4>Заявки и лимиты</h4>
-            <p>Бот собирает имя и контакт, создаёт заявку вместо «напишите @alexbond9232». Плюс потолок расхода на ИИ — на пользователя и на сутки.</p>
-            <span class="when">после базы, до второго канала</span>
+            <h4>Лимиты и связь с панелью</h4>
+            <p>Потолок расхода на ИИ — на пользователя и на сутки. Промпт и тексты переезжают из <span class="mono">bot.py</span> в панель, чтобы правиться без деплоя. Персональных данных шаг не касается.</p>
+            <span class="when">не ждёт РКН</span>
           </div>
         </li>
         <li>
           <div>
-            <h4>Панель</h4>
-            <p>Экран из макета выше: обзор, входящие, заявки, база знаний, расходы. С этого момента тексты и цены правятся без деплоя.</p>
-            <span class="when">когда есть что показывать</span>
+            <h4>Уведомление в РКН, затем сбор</h4>
+            <p>Уведомление оператора ПДн по 152-ФЗ. Оно нужно и для 184 записей, которые уже есть, — не только для возобновления сбора. После подачи включаются память диалога, контакты и заявки.</p>
+            <span class="when">разблокирует всё, что на паузе</span>
           </div>
         </li>
         <li>
