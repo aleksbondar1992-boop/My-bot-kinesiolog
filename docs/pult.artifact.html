@@ -1,0 +1,659 @@
+<title>Пульт кинезиолога</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --paper:#EEF2F5;
+  --surface:#FFFFFF;
+  --surface-2:#F7FAFB;
+  --ink:#0F1B23;
+  --ink-2:#33505F;
+  --muted:#657D8B;
+  --line:#D3DDE4;
+  --line-soft:#E4EBF0;
+  --accent:#C43A6E;
+  --accent-ink:#A32B59;
+  --accent-soft:rgba(196,58,110,.10);
+  --tg:#2B7FD4;
+  --ok:#2E7D5B;
+  --warn:#A9701F;
+  --crit:#C0392B;
+  --shadow:0 1px 2px rgba(15,27,35,.05), 0 10px 28px -14px rgba(15,27,35,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0A1117;
+    --surface:#111B22;
+    --surface-2:#16222A;
+    --ink:#E7EEF3;
+    --ink-2:#B3C4CE;
+    --muted:#8598A5;
+    --line:#25343E;
+    --line-soft:#1C2A33;
+    --accent:#E0658F;
+    --accent-ink:#EE87A8;
+    --accent-soft:rgba(224,101,143,.14);
+    --tg:#5CA5EE;
+    --ok:#57B08A;
+    --warn:#D3A45B;
+    --crit:#E8776B;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 32px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0A1117;
+  --surface:#111B22;
+  --surface-2:#16222A;
+  --ink:#E7EEF3;
+  --ink-2:#B3C4CE;
+  --muted:#8598A5;
+  --line:#25343E;
+  --line-soft:#1C2A33;
+  --accent:#E0658F;
+  --accent-ink:#EE87A8;
+  --accent-soft:rgba(224,101,143,.14);
+  --tg:#5CA5EE;
+  --ok:#57B08A;
+  --warn:#D3A45B;
+  --crit:#E8776B;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 12px 32px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Golos Text","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:1080px;margin:0 auto;padding:56px 24px 72px}
+
+/* ---------- masthead ---------- */
+.eyebrow{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 18px;
+}
+h1{
+  font-family:Literata,Georgia,serif;
+  font-weight:700;font-size:clamp(38px,6.4vw,64px);line-height:1.02;
+  letter-spacing:-.02em;margin:0;text-wrap:balance;
+}
+h1 .thin{color:var(--muted);font-weight:400;font-style:italic}
+.lead{
+  font-size:clamp(17px,2vw,19px);color:var(--ink-2);
+  max-width:60ch;margin:20px 0 0;
+}
+.strip{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;
+  padding-top:26px;border-top:1px solid var(--line);
+}
+.fact{
+  display:flex;flex-direction:column;gap:2px;
+  padding:10px 16px 10px 14px;border-left:2px solid var(--line);
+}
+.fact b{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:19px;font-weight:500;font-variant-numeric:tabular-nums;
+}
+.fact span{font-size:12.5px;color:var(--muted)}
+.fact.is-on{border-left-color:var(--ok)}
+.fact.is-off{border-left-color:var(--accent)}
+
+/* ---------- spine ---------- */
+.spine{position:relative;margin-top:64px;padding-left:34px}
+.spine::before{
+  content:"";position:absolute;left:5px;top:10px;bottom:10px;width:1px;
+  background:linear-gradient(to bottom,transparent,var(--line) 6%,var(--line) 94%,transparent);
+}
+section{position:relative;margin-bottom:76px}
+section::before{
+  content:"";position:absolute;left:-34px;top:13px;
+  width:11px;height:11px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--line);
+}
+section.mark::before{border-color:var(--accent);background:var(--accent)}
+@media (max-width:640px){
+  .spine{padding-left:0}
+  .spine::before{display:none}
+  section::before{display:none}
+}
+
+h2{
+  font-family:Literata,Georgia,serif;
+  font-size:clamp(25px,3.4vw,32px);font-weight:600;letter-spacing:-.015em;
+  line-height:1.15;margin:0 0 8px;text-wrap:balance;
+}
+.sub{color:var(--muted);font-size:15px;margin:0 0 26px;max-width:64ch}
+h3{
+  font-size:15px;font-weight:600;margin:0 0 12px;letter-spacing:-.005em;
+}
+p{margin:0 0 14px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{
+  background:var(--surface);border:1px solid var(--line-soft);
+  border-radius:10px;padding:22px;box-shadow:var(--shadow);
+}
+.card--flat{box-shadow:none;background:var(--surface-2)}
+
+dl.spec{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 18px;font-size:14.5px}
+dl.spec dt{color:var(--muted);white-space:nowrap}
+dl.spec dd{margin:0;color:var(--ink)}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13px}
+
+ul.gaps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+ul.gaps li{display:grid;grid-template-columns:78px 1fr;gap:14px;align-items:start;font-size:14.5px}
+ul.gaps b{display:block;font-weight:600}
+ul.gaps span.t{color:var(--muted);font-size:13.5px}
+.sev{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 0;border-top:2px solid;display:block;text-align:left;
+}
+.sev--crit{color:var(--crit);border-color:var(--crit)}
+.sev--warn{color:var(--warn);border-color:var(--warn)}
+.sev--later{color:var(--muted);border-color:var(--line)}
+
+/* ---------- figure / diagram ---------- */
+figure{margin:0}
+figure svg{width:100%;height:auto;display:block;color:var(--ink-2)}
+figcaption{margin-top:14px;font-size:13.5px;color:var(--muted);max-width:66ch}
+
+/* ---------- panel mock ---------- */
+.mock{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;overflow:hidden;box-shadow:var(--shadow);
+}
+.mock__bar{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  padding:13px 18px;border-bottom:1px solid var(--line-soft);
+  background:var(--surface-2);
+}
+.mock__logo{
+  font-family:Literata,Georgia,serif;font-weight:700;font-size:15px;letter-spacing:-.01em;
+}
+.mock__tabs{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.mock__tabs .on{color:var(--accent);font-weight:600;position:relative}
+.mock__tabs .on::after{
+  content:"";position:absolute;left:0;right:0;bottom:-14px;height:2px;background:var(--accent);
+}
+.mock__demo{
+  margin-left:auto;font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  border:1px dashed var(--line);border-radius:4px;padding:3px 8px;
+}
+.mock__body{padding:22px 18px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line-soft);
+  border:1px solid var(--line-soft);border-radius:8px;overflow:hidden}
+.kpi{background:var(--surface);padding:14px 16px}
+.kpi__l{font-size:12px;color:var(--muted);margin-bottom:6px}
+.kpi__v{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:26px;font-weight:500;line-height:1.1;font-variant-numeric:tabular-nums;
+}
+.kpi__v small{font-size:14px;color:var(--muted);font-weight:400}
+.kpi__d{font-size:12px;margin-top:4px;color:var(--muted)}
+.kpi__d.up{color:var(--ok)}
+
+.d-acc-fill{fill:var(--accent)}
+.d-acc-stroke{stroke:var(--accent)}
+.d-acc-soft{fill:var(--accent);fill-opacity:.10;stroke:var(--accent)}
+.d-acc-dim{fill:var(--accent);fill-opacity:.85}
+
+.chart{margin-top:22px}
+.chart__t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.chart__t h4{margin:0;font-size:13.5px;font-weight:600}
+.chart__t span{font-size:12px;color:var(--muted)}
+.plot{position:relative;height:132px;padding-left:26px}
+.plot__grid{position:absolute;inset:0 0 0 26px;display:flex;flex-direction:column;justify-content:space-between}
+.plot__grid i{display:block;border-top:1px dashed var(--line-soft)}
+.plot__ax{position:absolute;left:0;top:0;bottom:0;width:22px;display:flex;flex-direction:column;
+  justify-content:space-between;align-items:flex-end;
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10px;color:var(--muted);
+  font-variant-numeric:tabular-nums}
+.plot__ax i{font-style:normal}
+.plot__ax i:first-child{transform:translateY(-50%)}
+.plot__ax i:last-child{transform:translateY(50%)}
+.bars{position:absolute;inset:0 0 0 26px;display:flex;align-items:flex-end;gap:2px}
+.bar{
+  flex:1;background:var(--accent);border-radius:4px 4px 0 0;position:relative;
+  min-height:3px;opacity:.82;
+}
+.bar:hover{opacity:1}
+.bar.last{opacity:1}
+.bar .lbl{
+  position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.xax{display:flex;justify-content:space-between;padding-left:26px;margin-top:7px;
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;color:var(--muted)}
+
+.tbl-wrap{overflow-x:auto;margin-top:22px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+th{
+  text-align:left;font-weight:600;color:var(--muted);font-size:11.5px;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:0 14px 9px 0;border-bottom:1px solid var(--line);
+}
+td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line-soft);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num{font-family:"JetBrains Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12.5px;white-space:nowrap;
+}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.chip--ok{color:var(--ok)}
+.chip--pause{color:var(--warn)}
+.chip--pause::before{border-radius:1px}
+.chip--off{color:var(--muted)}
+.chip--off::before{background:none;box-shadow:inset 0 0 0 1.5px currentColor}
+
+/* ---------- feature grid ---------- */
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:1px;
+  background:var(--line-soft);border:1px solid var(--line-soft);border-radius:10px;overflow:hidden;margin-top:24px}
+.feat__i{background:var(--surface);padding:20px 18px}
+.feat__i h4{
+  margin:0 0 7px;font-size:14.5px;font-weight:600;display:flex;align-items:baseline;gap:8px;
+}
+.feat__i h4 em{
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-style:normal;
+  font-size:10.5px;color:var(--muted);letter-spacing:.06em;
+}
+.feat__i p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+
+/* ---------- channels ---------- */
+.chan{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.chan__h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.chan__d{width:9px;height:9px;border-radius:50%;flex:none}
+.chan__h h3{margin:0;font-size:17px;font-family:Literata,Georgia,serif;font-weight:600}
+.chan ul{margin:0;padding-left:18px;font-size:14px;color:var(--ink-2);display:flex;flex-direction:column;gap:8px}
+.chan ul strong{color:var(--ink);font-weight:600}
+
+/* ---------- checklist ---------- */
+.check{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.check li{
+  display:flex;gap:11px;align-items:flex-start;font-size:14px;
+  background:var(--surface-2);border:1px solid var(--line-soft);border-radius:8px;padding:13px 15px;
+}
+.check li::before{
+  content:"";flex:none;width:15px;height:15px;margin-top:3px;
+  border:1.5px solid var(--line);border-radius:4px;
+}
+
+/* ---------- steps ---------- */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:flex;flex-direction:column;gap:2px}
+.steps li{
+  counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:18px;
+  padding:20px 0;border-top:1px solid var(--line-soft);align-items:start;
+}
+.steps li:first-child{border-top:0}
+.steps li::before{
+  content:counter(s,decimal-leading-zero);
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13px;color:var(--accent);
+  padding-top:2px;
+}
+.steps h4{margin:0 0 5px;font-size:15.5px;font-weight:600}
+.steps p{margin:0;font-size:14px;color:var(--ink-2)}
+.steps .when{
+  font-family:"JetBrains Mono",ui-monospace,monospace;font-size:11px;color:var(--muted);
+  display:block;margin-top:7px;letter-spacing:.04em;
+}
+
+/* ---------- notes / footer ---------- */
+.note{
+  border-left:2px solid var(--accent);background:var(--accent-soft);
+  padding:16px 20px;border-radius:0 8px 8px 0;font-size:14.5px;color:var(--ink-2);
+  margin-top:24px;
+}
+.note b{color:var(--ink)}
+footer{
+  margin-top:24px;padding-top:26px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:10px;
+}
+footer a{color:var(--ink-2);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+footer a:hover{color:var(--accent)}
+a:focus-visible,.bar:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">Кинезиолог Александр Бондарь · август 2026</p>
+    <h1>Пульт<br><span class="thin">управление ботами практики</span></h1>
+    <p class="lead">Один экран, из которого живут все боты приёма: Telegram и ВКонтакте, ответы ИИ, заявки на консультацию и расход на модель. Ниже — что уже работает в проде, чего не хватает, как это собирается и где регистрироваться.</p>
+    <div class="strip">
+      <div class="fact is-on"><b>1</b><span>бот в проде</span></div>
+      <div class="fact is-off"><b>1&thinsp;/&thinsp;2</b><span>каналов подключено</span></div>
+      <div class="fact is-off"><b>0</b><span>панели пока нет</span></div>
+      <div class="fact is-on"><b>2.0&nbsp;Flash</b><span>модель Gemini в ответах</span></div>
+    </div>
+  </header>
+
+  <div class="spine">
+
+    <!-- 1 -->
+    <section class="mark" id="now">
+      <h2>Что работает сегодня</h2>
+      <p class="sub">Факты сняты с кода в репозитории <span class="mono">My-bot-kinesiolog</span>, файл <span class="mono">bot.py</span>, а не с презентации.</p>
+
+      <div class="grid g2">
+        <div class="card">
+          <h3>В проде</h3>
+          <dl class="spec">
+            <dt>Канал</dt><dd>Telegram, long polling</dd>
+            <dt>Библиотека</dt><dd class="mono">python-telegram-bot 20.3</dd>
+            <dt>Мозг</dt><dd>Gemini 2.0 Flash по REST</dd>
+            <dt>Роль</dt><dd>помощник кинезиолога, УТП «боль за 1 приём или бесплатно»</dd>
+            <dt>Запись</dt><dd>текстом отправляет к <span class="mono">@alexbond9232</span></dd>
+            <dt>Команды</dt><dd class="mono">/start</dd>
+            <dt>Секреты</dt><dd>в переменных окружения — в коде ключей нет</dd>
+            <dt>Сборка</dt><dd>nixpacks, конфиг пустой — сборка по умолчанию</dd>
+          </dl>
+        </div>
+
+        <div class="card">
+          <h3>Чего не хватает</h3>
+          <ul class="gaps">
+            <li><span class="sev sev--crit">критично</span><span><b>Нет памяти диалога</b><span class="t">Каждое сообщение уходит в модель отдельно. Человек уточняет «а сколько это стоит» — бот уже не знает, о чём речь.</span></span></li>
+            <li><span class="sev sev--crit">критично</span><span><b>Ничего не сохраняется</b><span class="t">Ни одного контакта, ни одного вопроса. Человек написал, ушёл — и он потерян.</span></span></li>
+            <li><span class="sev sev--warn">важно</span><span><b>Нет лимита на расход ИИ</b><span class="t">Один спамер с циклом сообщений — и счёт за API растёт без потолка.</span></span></li>
+            <li><span class="sev sev--warn">важно</span><span><b>Нет ВКонтакте</b><span class="t">Половина аудитории практики сидит в сообществе ВК и до бота не доходит.</span></span></li>
+            <li><span class="sev sev--warn">важно</span><span><b>Любая правка = деплой</b><span class="t">Поменять приветствие или цену в ответах нельзя без коммита и передеплоя.</span></span></li>
+            <li><span class="sev sev--later">потом</span><span><b>Нет запасного сценария</b><span class="t">Gemini не ответил — человек видит «Ошибка» и уходит. Ни повтора, ни второй модели.</span></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section id="arch">
+      <h2>Как это собирается</h2>
+      <p class="sub">Два канала входят через собственные адаптеры, дальше всё живёт в едином формате. Панель не встроена в бота — она правит настройки и читает данные, поэтому изменения применяются без передеплоя.</p>
+
+      <div class="card">
+        <figure>
+          <svg viewBox="0 46 1000 398" role="img" aria-label="Схема: сообщения из Telegram и ВКонтакте проходят через шлюз каналов в ядро, ядро обменивается запросами с ИИ-слоем и пишет диалоги и заявки в хранилище, панель управления читает метрики из хранилища и отправляет настройки в ядро">
+            <defs>
+              <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="currentColor"></path>
+              </marker>
+              <marker id="ar-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" class="d-acc-fill"></path>
+              </marker>
+            </defs>
+
+            <!-- users -->
+            <rect x="8" y="64" width="150" height="54" rx="8" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".45"></rect>
+            <text x="83" y="86" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">Пациент в TG</text>
+            <text x="83" y="103" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".65">личный чат</text>
+
+            <rect x="8" y="250" width="150" height="54" rx="8" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".45"></rect>
+            <text x="83" y="272" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">Пациент в ВК</text>
+            <text x="83" y="289" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".65">сообщения сообщества</text>
+
+            <!-- gate -->
+            <rect x="268" y="118" width="170" height="130" rx="8" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".45"></rect>
+            <text x="353" y="146" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">Шлюз каналов</text>
+            <line x1="288" y1="160" x2="418" y2="160" stroke="currentColor" stroke-opacity=".2"></line>
+            <text x="353" y="184" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".8">Telegram-адаптер</text>
+            <text x="353" y="206" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".8">VK-адаптер</text>
+            <text x="353" y="230" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".55">антиспам · дедупликация</text>
+
+            <!-- core -->
+            <rect x="548" y="118" width="170" height="130" rx="8" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".45"></rect>
+            <text x="633" y="146" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">Ядро</text>
+            <line x1="568" y1="160" x2="698" y2="160" stroke="currentColor" stroke-opacity=".2"></line>
+            <text x="633" y="184" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".8">сессия и память</text>
+            <text x="633" y="206" text-anchor="middle" font-size="11.5" fill="currentColor" fill-opacity=".8">сценарии и заявки</text>
+            <text x="633" y="230" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".55">лимиты расхода</text>
+
+            <!-- ai -->
+            <rect x="808" y="118" width="184" height="54" rx="8" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".45"></rect>
+            <text x="900" y="140" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">ИИ-слой</text>
+            <text x="900" y="157" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".65">Gemini 2.0 Flash</text>
+
+            <!-- db -->
+            <rect x="808" y="194" width="184" height="54" rx="8" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".45"></rect>
+            <text x="900" y="216" text-anchor="middle" font-size="13" font-weight="600" fill="currentColor">Хранилище</text>
+            <text x="900" y="233" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".65">диалоги · контакты · заявки</text>
+
+            <!-- panel (accent) -->
+            <rect x="408" y="356" width="440" height="60" rx="8" class="d-acc-soft" stroke-width="1.5"></rect>
+            <text x="628" y="380" text-anchor="middle" font-size="13.5" font-weight="700" class="d-acc-fill">Панель управления</text>
+            <text x="628" y="399" text-anchor="middle" font-size="11" class="d-acc-dim">тексты, сценарии, лимиты, заявки — без деплоя</text>
+
+            <!-- arrows -->
+            <line x1="158" y1="91" x2="262" y2="138" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"></line>
+            <text x="208" y="101" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".7">Bot API</text>
+
+            <line x1="158" y1="277" x2="262" y2="230" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"></line>
+            <text x="208" y="274" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".7">Callback API</text>
+
+            <line x1="438" y1="183" x2="542" y2="183" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"></line>
+            <text x="490" y="173" text-anchor="middle" font-size="11" fill="currentColor" fill-opacity=".7">единый формат</text>
+
+            <line x1="722" y1="145" x2="804" y2="145" stroke="currentColor" stroke-width="1.4" marker-start="url(#ar)" marker-end="url(#ar)"></line>
+            <text x="763" y="136" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".7">промпт ↔ ответ</text>
+
+            <line x1="722" y1="221" x2="804" y2="221" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"></line>
+            <text x="763" y="212" text-anchor="middle" font-size="10.5" fill="currentColor" fill-opacity=".7">диалог, заявка</text>
+
+            <line x1="880" y1="254" x2="880" y2="350" stroke="currentColor" stroke-width="1.4" marker-end="url(#ar)"></line>
+            <text x="870" y="310" text-anchor="end" font-size="11" fill="currentColor" fill-opacity=".7">метрики, диалоги</text>
+
+            <line x1="628" y1="356" x2="628" y2="254" class="d-acc-stroke" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ar-a)"></line>
+            <text x="618" y="306" text-anchor="end" font-size="11" class="d-acc-fill">промпт, тексты, лимиты</text>
+
+            <!-- legend -->
+            <line x1="10" y1="424" x2="40" y2="424" stroke="currentColor" stroke-width="1.4"></line>
+            <text x="48" y="428" font-size="10.5" fill="currentColor" fill-opacity=".65">данные</text>
+            <line x1="112" y1="424" x2="142" y2="424" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4"></line>
+            <text x="150" y="428" font-size="10.5" fill="currentColor" fill-opacity=".65">управление</text>
+          </svg>
+          <figcaption>Сегодня из этой схемы существует только путь «Пациент в TG → ИИ-слой → ответ». Шлюз, ядро, хранилище и панель — то, что предстоит собрать; без хранилища панели просто нечего показывать.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="mark" id="panel">
+      <h2>Панель управления</h2>
+      <p class="sub">Главный экран отвечает на три вопроса за пять секунд: боты живы, сколько людей написало, сколько дошло до заявки. Ниже — макет с демонстрационными числами, не реальная статистика.</p>
+
+      <div class="mock">
+        <div class="mock__bar">
+          <span class="mock__logo">Пульт</span>
+          <nav class="mock__tabs">
+            <span class="on">Обзор</span><span>Входящие</span><span>Заявки</span><span>Боты</span><span>База знаний</span><span>Рассылки</span><span>Расходы</span>
+          </nav>
+          <span class="mock__demo">макет · демо-данные</span>
+        </div>
+
+        <div class="mock__body">
+          <div class="kpis">
+            <div class="kpi"><div class="kpi__l">Диалогов сегодня</div><div class="kpi__v">34</div><div class="kpi__d up">+8 ко вчера</div></div>
+            <div class="kpi"><div class="kpi__l">Заявок на приём</div><div class="kpi__v">6</div><div class="kpi__d">2 не обработаны</div></div>
+            <div class="kpi"><div class="kpi__l">Конверсия в заявку</div><div class="kpi__v">18<small>&thinsp;%</small></div><div class="kpi__d">от всех диалогов</div></div>
+            <div class="kpi"><div class="kpi__l">Расход ИИ за сутки</div><div class="kpi__v">41<small>&thinsp;₽</small></div><div class="kpi__d">лимит 300 ₽</div></div>
+            <div class="kpi"><div class="kpi__l">Средний ответ</div><div class="kpi__v">2.4<small>&thinsp;с</small></div><div class="kpi__d">по 34 ответам</div></div>
+          </div>
+
+          <div class="chart">
+            <div class="chart__t">
+              <h4>Диалоги по дням</h4>
+              <span>последние 14 дней</span>
+            </div>
+            <div class="plot">
+              <div class="plot__grid"><i></i><i></i><i></i></div>
+              <div class="plot__ax"><i>24</i><i>12</i><i>0</i></div>
+              <div class="bars">
+                <div class="bar" style="height:50%" title="12 диалогов"></div>
+                <div class="bar" style="height:37%" title="9 диалогов"></div>
+                <div class="bar" style="height:58%" title="14 диалогов"></div>
+                <div class="bar" style="height:75%" title="18 диалогов"></div>
+                <div class="bar" style="height:46%" title="11 диалогов"></div>
+                <div class="bar" style="height:29%" title="7 диалогов"></div>
+                <div class="bar" style="height:21%" title="5 диалогов"></div>
+                <div class="bar" style="height:67%" title="16 диалогов"></div>
+                <div class="bar" style="height:87%" title="21 диалог"></div>
+                <div class="bar" style="height:71%" title="17 диалогов"></div>
+                <div class="bar" style="height:54%" title="13 диалогов"></div>
+                <div class="bar" style="height:79%" title="19 диалогов"></div>
+                <div class="bar" style="height:100%" title="24 диалога"></div>
+                <div class="bar last" style="height:92%" title="22 диалога — сегодня"><span class="lbl">22</span></div>
+              </div>
+            </div>
+            <div class="xax"><span>9 авг</span><span>16 авг</span><span>сегодня</span></div>
+          </div>
+
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Бот</th><th>Канал</th><th>Состояние</th><th>Диалогов 24 ч</th><th>Модель</th></tr></thead>
+              <tbody>
+                <tr><td>Кинезио-помощник</td><td>Telegram</td><td><span class="chip chip--ok">Работает</span></td><td class="num">34</td><td class="mono">gemini-2.0-flash</td></tr>
+                <tr><td>Кинезио-помощник</td><td>ВКонтакте</td><td><span class="chip chip--off">Не подключён</span></td><td class="num">—</td><td>—</td></tr>
+                <tr><td>Запись на приём</td><td>Telegram</td><td><span class="chip chip--pause">На паузе</span></td><td class="num">0</td><td>сценарий без ИИ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:38px">Разделы панели</h3>
+      <div class="feat">
+        <div class="feat__i"><h4>Входящие <em>оба канала</em></h4><p>Все переписки Telegram и ВК в одном списке. Кнопка «отвечаю сам» отключает бота в этом диалоге, пока вы пишете руками.</p></div>
+        <div class="feat__i"><h4>Заявки <em>воронка</em></h4><p>Кто дошёл до записи: имя, канал, контакт, жалоба, статус — новая, в работе, записан, отказ. Ничего не теряется в переписке.</p></div>
+        <div class="feat__i"><h4>Боты и каналы <em>рубильник</em></h4><p>Подключить бота, вставить токен, проверить связь, поставить на паузу. Красная кнопка «стоп всем» — на случай, если бот пишет ерунду.</p></div>
+        <div class="feat__i"><h4>База знаний <em>без деплоя</em></h4><p>Промпт, цены, адрес, УТП, ответы на частые вопросы. Правится в поле и применяется сразу — коммит не нужен.</p></div>
+        <div class="feat__i"><h4>Сценарии <em>шаги</em></h4><p>Приветствие, кнопки, что спросить до записи, что написать, если человек замолчал на два дня.</p></div>
+        <div class="feat__i"><h4>Рассылки <em>сегменты</em></h4><p>Отправка по группам — был на приёме, не дошёл, спрашивал про спину. Отдельно в TG, отдельно в ВК, с ограничением частоты.</p></div>
+        <div class="feat__i"><h4>Аналитика <em>по каналам</em></h4><p>Диалоги, заявки, конверсия, часы пиковой нагрузки. Видно, какой канал реально приводит людей на приём.</p></div>
+        <div class="feat__i"><h4>Расходы <em>потолок</em></h4><p>Токены и рубли по дням, лимит на пользователя и на сутки. При достижении потолка бот переходит на готовые ответы, а не на пустой счёт.</p></div>
+      </div>
+
+      <div class="note"><b>Важно:</b> числа и графики выше — макет для оценки вида и состава экрана. Реальных данных пока нет: бот ничего не пишет в хранилище, поэтому первый шаг к панели — база, а не вёрстка.</div>
+    </section>
+
+    <!-- 4 -->
+    <section id="channels">
+      <h2>Telegram и ВКонтакте — что различается</h2>
+      <p class="sub">Каналы похожи снаружи и заметно расходятся внутри. Это влияет и на код адаптера, и на то, за какие сервисы придётся платить.</p>
+
+      <div class="chan">
+        <div class="card">
+          <div class="chan__h"><span class="chan__d" style="background:var(--tg)"></span><h3>Telegram</h3></div>
+          <ul>
+            <li><strong>Регистрация бота:</strong> @BotFather, токен за минуту, бесплатно.</li>
+            <li><strong>Приём сообщений:</strong> polling (как сейчас) или webhook. Polling проще, webhook дешевле по ресурсам.</li>
+            <li><strong>Рассылки:</strong> только тем, кто сам написал боту. Лимиты Bot API строгие.</li>
+            <li><strong>Плюс:</strong> кнопки, оплата, мини-приложения из коробки.</li>
+            <li><strong>Готово:</strong> канал уже работает.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="chan__h"><span class="chan__d" style="background:var(--accent)"></span><h3>ВКонтакте</h3></div>
+          <ul>
+            <li><strong>Регистрация бота:</strong> не отдельный бот, а <em>сообщество</em>. Ключ доступа выдаётся в настройках сообщества.</li>
+            <li><strong>Приём сообщений:</strong> Callback API (вебхук) или Long Poll. Нужно включить сообщения сообщества.</li>
+            <li><strong>Рассылки:</strong> удобнее через Senler — подписки и сегменты живут внутри ВК.</li>
+            <li><strong>Плюс:</strong> люди уже в сообществе, не нужно вести их в другой мессенджер.</li>
+            <li><strong>Нужно:</strong> права администратора сообщества.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="mark" id="services">
+      <h2>Где регистрироваться</h2>
+      <p class="sub">Два бесплатных обязательных пункта — BotFather и сообщество ВК: без них ботов просто не существует. Остальное берётся, только если не хочется писать код самим.</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Площадка</th><th>Зачем</th><th>TG</th><th>ВК</th><th>Цена</th><th>Что нужно для входа</th></tr></thead>
+          <tbody>
+            <tr><td><b>BotFather</b><br><span class="mono" style="color:var(--muted)">t.me/BotFather</span></td><td>Официальная выдача токена бота</td><td>да</td><td>—</td><td class="num">бесплатно</td><td>аккаунт Telegram</td></tr>
+            <tr><td><b>Сообщество ВК</b><br><span class="mono" style="color:var(--muted)">vk.com/dev</span></td><td>Ключ доступа и Callback API</td><td>—</td><td>да</td><td class="num">бесплатно</td><td>аккаунт ВК, права админа сообщества</td></tr>
+            <tr><td><b>SaleBot</b></td><td>Конструктор без кода: воронки, CRM, ИИ-диалоги</td><td>да</td><td>да</td><td class="num">есть бесплатный старт, платно ≈ от 2 000 ₽/мес</td><td>e-mail, телефон</td></tr>
+            <tr><td><b>BotHelp</b></td><td>Рассылки и сегменты сразу по нескольким каналам</td><td>да</td><td>да</td><td class="num">≈ от 1 300–1 600 ₽/мес</td><td>e-mail</td></tr>
+            <tr><td><b>PuzzleBot</b></td><td>Telegram-first: мини-приложения, платный доступ</td><td>да</td><td>—</td><td class="num">бесплатный старт, платно ≈ от 400–800 ₽/мес</td><td>вход через Telegram</td></tr>
+            <tr><td><b>Senler</b></td><td>Подписки и рассылки внутри ВК</td><td>да</td><td>да</td><td class="num">бесплатно до 50 сообщений/день, Pro ≈ от 1 500 ₽/мес</td><td>вход через ВК, сообщество</td></tr>
+            <tr><td><b>Amvera · Timeweb · Bothost</b></td><td>Хостинг для своего кода — то, что нужно этому проекту</td><td>да</td><td>да</td><td class="num">от ≈ 170 ₽/мес, у Bothost есть бесплатный план</td><td>e-mail, git-репозиторий</td></tr>
+            <tr><td><b>Kwork · FL.ru</b></td><td>Если продавать разработку ботов другим</td><td>да</td><td>да</td><td class="num">комиссия с заказа</td><td>паспортные и платёжные данные для вывода</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top:36px">Что подготовить до регистрации — 10 минут</h3>
+      <ul class="check">
+        <li>Отдельная почта проекта, не личная — на неё придут все аккаунты и счета</li>
+        <li>Телефон для SMS-подтверждения</li>
+        <li>Аккаунт Telegram — под ним создаётся бот в BotFather</li>
+        <li>Сообщество ВК и права администратора в нём</li>
+        <li>Менеджер паролей: аккаунтов будет пять и больше</li>
+        <li>Карта для оплаты — часть сервисов принимает только российские</li>
+        <li>Сначала бесплатные тарифы, оплата — после первой рабочей связки</li>
+        <li>Токены сразу в переменные окружения, не в переписку и не в код</li>
+      </ul>
+
+      <div class="note"><b>Порядок важен:</b> сначала BotFather и сообщество ВК — они бесплатны и нужны в любом случае. Конструктор берите только если решите не писать код: у вас уже есть свой бот, и подписка на SaleBot или BotHelp его дублирует, а не дополняет.</div>
+    </section>
+
+    <!-- 6 -->
+    <section id="plan">
+      <h2>Порядок внедрения</h2>
+      <p class="sub">Шаги идут именно в этом порядке: каждый следующий опирается на предыдущий. Панель нельзя сделать раньше базы — ей нечего будет показывать.</p>
+
+      <ol class="steps">
+        <li>
+          <div>
+            <h4>Память и база</h4>
+            <p>Хранение истории диалога и контактов. Бот начинает помнить контекст, а вы — видеть, кто писал. Без этого шага остальное бессмысленно.</p>
+            <span class="when">закрывает два критичных пробела</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Заявки и лимиты</h4>
+            <p>Бот собирает имя и контакт, создаёт заявку вместо «напишите @alexbond9232». Плюс потолок расхода на ИИ — на пользователя и на сутки.</p>
+            <span class="when">после базы, до второго канала</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>Панель</h4>
+            <p>Экран из макета выше: обзор, входящие, заявки, база знаний, расходы. С этого момента тексты и цены правятся без деплоя.</p>
+            <span class="when">когда есть что показывать</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h4>ВКонтакте</h4>
+            <p>VK-адаптер к готовому ядру. Логика, промпт и заявки уже общие — подключается только новый вход. Рассылки по ВК — через Senler.</p>
+            <span class="when">последним: ядро к этому моменту проверено</span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+  </div>
+
+  <footer>
+    <div>Цены — по открытым источникам на август 2026, тарифы меняются: сверяйтесь на сайтах сервисов. Состав панели на макете — демонстрационные данные.</div>
+    <div>Источники: <a href="https://vc.ru/top-raiting/1851381-konstruktor-chat-botov-top-5-luchshih-platform-2026-dlya-telegram-vk-i-saita">vc.ru — конструкторы чат-ботов 2026</a> · <a href="https://vakas.ru/articles/senler-ili-salebot/">Vakas — Senler или Salebot</a> · <a href="https://edprosto.ru/senler">edprosto.ru — обзор Senler</a> · <a href="https://amvera.ru/bothosting">Amvera — хостинг ботов</a> · <a href="https://vc.ru/top-raiting/2296643-luchshie-hostingi-dlya-telegram-bota">vc.ru — хостинги для Telegram-бота</a></div>
+  </footer>
+
+</div>
