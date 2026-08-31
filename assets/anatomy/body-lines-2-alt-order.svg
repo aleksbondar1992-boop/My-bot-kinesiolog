@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1460" viewBox="0 0 1000 1460">
+<rect width="1000" height="1460" fill="#FFFFFF"/>
+<text x="40" y="54" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="29" font-weight="bold" dominant-baseline="central">Схема 2 — Те же линии, другая последовательность</text><text x="40" y="86" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="16.5" dominant-baseline="central">За каждой опорной линией сразу её вспомогательная: апертура→шея, таз→диафрагма, стопы→колени.</text><line x1="40" y1="106" x2="960" y2="106" stroke="#DCE4E8" stroke-width="2"/>
+<path d="M 352 320 C 316 328, 286 344, 268 376 C 280 420, 292 446, 296 470 C 300 530, 306 568, 308 610 C 310 660, 292 702, 288 748 C 284 812, 290 880, 296 940 C 300 998, 302 1030, 304 1062 C 302 1104, 296 1134, 300 1166 C 306 1210, 316 1250, 322 1288 C 316 1308, 316 1324, 322 1330 L 368 1330 C 374 1324, 374 1308, 370 1288 C 372 1246, 380 1200, 384 1160 C 387 1126, 386 1096, 386 1062 C 388 1000, 393 944, 398 892 L 400 878 L 402 892 C 407 944, 412 1000, 414 1062 C 414 1096, 413 1126, 416 1160 C 420 1200, 428 1246, 430 1288 C 426 1308, 426 1324, 432 1330 L 478 1330 C 484 1324, 484 1308, 478 1288 C 484 1250, 494 1210, 500 1166 C 504 1134, 498 1104, 496 1062 C 498 1030, 500 998, 504 940 C 510 880, 516 812, 512 748 C 508 702, 490 660, 492 610 C 494 568, 500 530, 504 470 C 508 446, 520 420, 532 376 C 514 344, 484 328, 448 320 Z" fill="#F3F7F9" stroke="#33454F" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M 274 356 C 248 378, 238 418, 236 462 C 232 520, 228 566, 226 610 C 224 652, 226 682, 230 706 C 232 744, 234 776, 236 804 C 234 834, 238 858, 242 878 C 250 902, 268 906, 278 890 C 284 868, 286 844, 286 818 C 288 788, 290 758, 290 718 C 292 684, 294 654, 294 618 C 296 566, 300 512, 304 470 C 306 442, 304 416, 298 396 Z" fill="#F3F7F9" stroke="#33454F" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M 526 356 C 552 378, 562 418, 564 462 C 568 520, 572 566, 574 610 C 576 652, 574 682, 570 706 C 568 744, 566 776, 564 804 C 566 834, 562 858, 558 878 C 550 902, 532 906, 522 890 C 516 868, 514 844, 514 818 C 512 788, 510 758, 510 718 C 508 684, 506 654, 506 618 C 504 566, 500 512, 496 470 C 494 442, 496 416, 502 396 Z" fill="#F3F7F9" stroke="#33454F" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M 366 236 C 364 272, 360 296, 350 322 C 380 332, 420 332, 450 322 C 440 296, 436 272, 434 236 Z" fill="#F3F7F9" stroke="#33454F" stroke-width="2.6"/>
+<ellipse cx="400" cy="185" rx="62" ry="78" fill="#F3F7F9" stroke="#33454F" stroke-width="2.6"/>
+<path d="M 338 180 C 329 184, 328 202, 336 212" fill="none" stroke="#33454F" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M 462 180 C 471 184, 472 202, 464 212" fill="none" stroke="#33454F" stroke-width="2.2" stroke-linecap="round"/>
+<g fill="none" stroke="#8AA0AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M 340 208 C 356 236, 374 248, 400 254 C 426 248, 444 236, 460 208"/>
+<path d="M 400 330 C 396 420, 404 520, 400 600 C 396 682, 404 742, 400 800" stroke-width="2"/>
+<path d="M 392 346 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 372 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 398 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 424 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 450 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 476 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 502 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 528 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 554 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 580 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 606 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 632 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 658 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 684 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 710 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 736 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 762 H 408" stroke-width="1.2" opacity="0.8"/>
+<path d="M 392 788 H 408" stroke-width="1.2" opacity="0.8"/>
+</g><circle cx="400" cy="332" r="5.5" fill="none" stroke="#8AA0AC" stroke-width="2.2"/><g fill="none" stroke="#8AA0AC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M 378 392 C 356 382, 332 380, 316 388 C 328 422, 346 454, 368 474 C 375 444, 378 414, 378 392 Z"/>
+<path d="M 422 392 C 444 382, 468 380, 484 388 C 472 422, 454 454, 432 474 C 425 444, 422 414, 422 392 Z"/>
+<path d="M 320 552 C 348 588, 374 604, 398 610"/>
+<path d="M 480 552 C 452 588, 426 604, 402 610"/>
+<path d="M 372 726 L 400 800 L 428 726"/>
+<path d="M 400 800 L 400 872"/>
+<path d="M 312 856 C 340 878, 372 882, 396 874"/>
+<path d="M 488 856 C 460 878, 428 882, 404 874"/>
+<path d="M 314 1050 C 334 1062, 358 1062, 380 1050"/>
+<path d="M 486 1050 C 466 1062, 442 1062, 420 1050"/>
+<path d="M 336 1246 C 338 1276, 340 1298, 342 1312"/>
+<path d="M 464 1246 C 462 1276, 460 1298, 458 1312"/>
+</g>
+<line x1="400" y1="118" x2="400" y2="1354" stroke="#B9C6CD" stroke-width="1.8" stroke-dasharray="5 9" opacity="0.9"/><text x="408" y="1366" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5">средняя линия (отвес)</text>
+<line x1="112" y1="190" x2="692" y2="190" stroke="#D92B3A" stroke-width="8" stroke-linecap="round"/>
+<circle cx="338" cy="190" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<circle cx="462" cy="190" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<path d="M 692 190 H 682 L 700 190" fill="none" stroke="#D92B3A" stroke-width="1.5" opacity="0.55"/>
+<circle cx="72" cy="190" r="21" fill="#D92B3A"/>
+<text x="72" y="190" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" text-anchor="middle" dominant-baseline="central">1</text>
+<text x="708" y="181.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">Линия глаз</text>
+<text x="708" y="201.0" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" dominant-baseline="central">уровень зрачков / верх ушных раковин</text>
+<line x1="112" y1="250" x2="692" y2="250" stroke="#D92B3A" stroke-width="8" stroke-linecap="round"/>
+<circle cx="352" cy="250" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<circle cx="448" cy="250" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<path d="M 692 250 H 682 L 700 250" fill="none" stroke="#D92B3A" stroke-width="1.5" opacity="0.55"/>
+<circle cx="72" cy="250" r="21" fill="#D92B3A"/>
+<text x="72" y="250" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" text-anchor="middle" dominant-baseline="central">2</text>
+<text x="708" y="241.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">Линия челюсти</text>
+<text x="708" y="261.0" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" dominant-baseline="central">угол нижней челюсти</text>
+<line x1="112" y1="300" x2="692" y2="300" stroke="#1E7FC2" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="11 7"/>
+<circle cx="362" cy="300" r="5.6" fill="#FFFFFF" stroke="#1E7FC2" stroke-width="2.6"/>
+<circle cx="438" cy="300" r="5.6" fill="#FFFFFF" stroke="#1E7FC2" stroke-width="2.6"/>
+<path d="M 692 300 H 682 L 700 304.0" fill="none" stroke="#1E7FC2" stroke-width="1.5" opacity="0.55"/>
+<circle cx="72" cy="300" r="21" fill="#1E7FC2"/>
+<text x="72" y="300" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" text-anchor="middle" dominant-baseline="central">4</text>
+<text x="708" y="295.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">Линия шеи</text>
+<text x="708" y="315.0" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" dominant-baseline="central">средний шейный отдел, C3–C4</text>
+<line x1="112" y1="352" x2="692" y2="352" stroke="#D92B3A" stroke-width="8" stroke-linecap="round"/>
+<circle cx="286" cy="352" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<circle cx="514" cy="352" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<path d="M 692 352 H 682 L 700 369.0" fill="none" stroke="#D92B3A" stroke-width="1.5" opacity="0.55"/>
+<circle cx="72" cy="352" r="21" fill="#D92B3A"/>
+<text x="72" y="352" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" text-anchor="middle" dominant-baseline="central">3</text>
+<text x="708" y="349.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">Линия апертуры</text>
+<text x="708" y="371.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">грудной клетки</text>
+<text x="708" y="391.0" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" dominant-baseline="central">верхняя апертура: Th1–Th2, I ребро</text>
+<line x1="112" y1="600" x2="692" y2="600" stroke="#1E7FC2" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="11 7"/>
+<circle cx="350" cy="600" r="5.6" fill="#FFFFFF" stroke="#1E7FC2" stroke-width="2.6"/>
+<circle cx="450" cy="600" r="5.6" fill="#FFFFFF" stroke="#1E7FC2" stroke-width="2.6"/>
+<path d="M 692 600 H 682 L 700 600" fill="none" stroke="#1E7FC2" stroke-width="1.5" opacity="0.55"/>
+<circle cx="72" cy="600" r="21" fill="#1E7FC2"/>
+<text x="72" y="600" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" text-anchor="middle" dominant-baseline="central">6</text>
+<text x="708" y="580.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">Линия грудобрюшной</text>
+<text x="708" y="602.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">диафрагмы</text>
+<text x="708" y="622.0" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" dominant-baseline="central">Th12–L1, рёберная дуга</text>
+<line x1="112" y1="780" x2="692" y2="780" stroke="#D92B3A" stroke-width="8" stroke-linecap="round"/>
+<circle cx="290" cy="780" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<circle cx="510" cy="780" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<path d="M 692 780 H 682 L 700 780" fill="none" stroke="#D92B3A" stroke-width="1.5" opacity="0.55"/>
+<circle cx="72" cy="780" r="21" fill="#D92B3A"/>
+<text x="72" y="780" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" text-anchor="middle" dominant-baseline="central">5</text>
+<text x="708" y="760.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">Линия тазобедренных</text>
+<text x="708" y="782.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">суставов</text>
+<text x="708" y="802.0" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" dominant-baseline="central">большие вертелы бедренных костей</text>
+<line x1="112" y1="1058" x2="692" y2="1058" stroke="#1E7FC2" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="11 7"/>
+<circle cx="332" cy="1058" r="5.6" fill="#FFFFFF" stroke="#1E7FC2" stroke-width="2.6"/>
+<circle cx="468" cy="1058" r="5.6" fill="#FFFFFF" stroke="#1E7FC2" stroke-width="2.6"/>
+<path d="M 692 1058 H 682 L 700 1058" fill="none" stroke="#1E7FC2" stroke-width="1.5" opacity="0.55"/>
+<circle cx="72" cy="1058" r="21" fill="#1E7FC2"/>
+<text x="72" y="1058" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" text-anchor="middle" dominant-baseline="central">8</text>
+<text x="708" y="1049.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">Линия колен</text>
+<text x="708" y="1069.0" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" dominant-baseline="central">щели коленных суставов</text>
+<line x1="112" y1="1330" x2="692" y2="1330" stroke="#D92B3A" stroke-width="8" stroke-linecap="round"/>
+<circle cx="345" cy="1330" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<circle cx="455" cy="1330" r="5.6" fill="#FFFFFF" stroke="#D92B3A" stroke-width="2.6"/>
+<path d="M 692 1330 H 682 L 700 1322.0" fill="none" stroke="#D92B3A" stroke-width="1.5" opacity="0.55"/>
+<circle cx="72" cy="1330" r="21" fill="#D92B3A"/>
+<text x="72" y="1330" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="21" font-weight="bold" text-anchor="middle" dominant-baseline="central">7</text>
+<text x="708" y="1313.0" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="18" font-weight="bold" dominant-baseline="central">Линия стоп</text>
+<text x="708" y="1333.0" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" dominant-baseline="central">опора: подошвы, пяточные бугры</text>
+<circle cx="97.2" cy="1392" r="11.5" fill="#D92B3A"/>
+<text x="97.2" y="1392" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" dominant-baseline="central">1</text>
+<text x="112.2" y="1392" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="14" dominant-baseline="central">глаза</text>
+<text x="168.1" y="1392" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle" dominant-baseline="central">&#8250;</text>
+<circle cx="194.6" cy="1392" r="11.5" fill="#D92B3A"/>
+<text x="194.6" y="1392" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" dominant-baseline="central">2</text>
+<text x="209.6" y="1392" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="14" dominant-baseline="central">челюсть</text>
+<text x="286.4" y="1392" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle" dominant-baseline="central">&#8250;</text>
+<circle cx="312.9" cy="1392" r="11.5" fill="#D92B3A"/>
+<text x="312.9" y="1392" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" dominant-baseline="central">3</text>
+<text x="327.9" y="1392" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="14" dominant-baseline="central">апертура</text>
+<text x="412.0" y="1392" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle" dominant-baseline="central">&#8250;</text>
+<circle cx="438.5" cy="1392" r="11.5" fill="#1E7FC2"/>
+<text x="438.5" y="1392" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" dominant-baseline="central">4</text>
+<text x="453.5" y="1392" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="14" dominant-baseline="central">шея</text>
+<text x="498.3" y="1392" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle" dominant-baseline="central">&#8250;</text>
+<circle cx="524.8" cy="1392" r="11.5" fill="#D92B3A"/>
+<text x="524.8" y="1392" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" dominant-baseline="central">5</text>
+<text x="539.8" y="1392" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="14" dominant-baseline="central">таз</text>
+<text x="579.0" y="1392" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle" dominant-baseline="central">&#8250;</text>
+<circle cx="605.5" cy="1392" r="11.5" fill="#1E7FC2"/>
+<text x="605.5" y="1392" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" dominant-baseline="central">6</text>
+<text x="620.5" y="1392" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="14" dominant-baseline="central">диафрагма</text>
+<text x="718.8" y="1392" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle" dominant-baseline="central">&#8250;</text>
+<circle cx="745.3" cy="1392" r="11.5" fill="#D92B3A"/>
+<text x="745.3" y="1392" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" dominant-baseline="central">7</text>
+<text x="760.3" y="1392" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="14" dominant-baseline="central">стопы</text>
+<text x="819.9" y="1392" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="17" text-anchor="middle" dominant-baseline="central">&#8250;</text>
+<circle cx="846.4" cy="1392" r="11.5" fill="#1E7FC2"/>
+<text x="846.4" y="1392" fill="#fff" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" dominant-baseline="central">8</text>
+<text x="861.4" y="1392" fill="#22323B" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="14" dominant-baseline="central">колени</text>
+<line x1="40" y1="1434" x2="80" y2="1434" stroke="#D92B3A" stroke-width="8" stroke-linecap="round"/>
+<text x="90" y="1434" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="13.5" dominant-baseline="central">опорные (жирные) линии</text>
+<line x1="301.89404296875" y1="1434" x2="341.89404296875" y2="1434" stroke="#1E7FC2" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="9 6"/>
+<text x="351.89404296875" y="1434" fill="#7A8A94" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="13.5" dominant-baseline="central">вспомогательные линии</text>
+</svg>
