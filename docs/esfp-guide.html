@@ -1,0 +1,607 @@
+<title>Тело знает первым</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Karla:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#F4EEEE;
+    --surface:#FDF9F8;
+    --surface-2:#EBDFE0;
+    --ink:#2A1D21;
+    --ink-soft:#6E585E;
+    --ink-faint:#9A858B;
+    --accent:#B62544;
+    --accent-wash:#F3DDE2;
+    --keep:#1B6A5F;
+    --keep-wash:#DBEAE6;
+    --rule:#DDCDCF;
+    --rule-soft:#E9DDDE;
+    --meter-track:#E4D6D8;
+    --display:"Fraunces","Georgia",serif;
+    --body:"Karla","Helvetica Neue",Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#171113;
+      --surface:#1F181A;
+      --surface-2:#2A2023;
+      --ink:#F2E8E9;
+      --ink-soft:#BCA4AA;
+      --ink-faint:#8C767C;
+      --accent:#FF7A90;
+      --accent-wash:#3B2029;
+      --keep:#5CC7B2;
+      --keep-wash:#15332E;
+      --rule:#3A2A2E;
+      --rule-soft:#2C2124;
+      --meter-track:#332528;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#171113;
+    --surface:#1F181A;
+    --surface-2:#2A2023;
+    --ink:#F2E8E9;
+    --ink-soft:#BCA4AA;
+    --ink-faint:#8C767C;
+    --accent:#FF7A90;
+    --accent-wash:#3B2029;
+    --keep:#5CC7B2;
+    --keep-wash:#15332E;
+    --rule:#3A2A2E;
+    --rule-soft:#2C2124;
+    --meter-track:#332528;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    max-width:1140px;
+    margin:0 auto;
+    padding:44px 22px 96px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:48px;
+  }
+  @media (min-width:1040px){
+    .page{grid-template-columns:184px minmax(0,1fr);gap:64px;padding-top:64px}
+  }
+
+  /* ---------- index rail ---------- */
+  .rail{display:none}
+  @media (min-width:1040px){
+    .rail{
+      display:block;
+      position:sticky;
+      top:64px;
+      align-self:start;
+      border-top:2px solid var(--ink);
+      padding-top:14px;
+    }
+  }
+  .rail-title{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);margin:0 0 12px;font-weight:700;
+  }
+  .rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+  .rail a{
+    display:flex;gap:9px;align-items:baseline;
+    color:var(--ink-soft);text-decoration:none;font-size:13.5px;line-height:1.35;
+    border-bottom:1px solid transparent;
+  }
+  .rail a .n{
+    color:var(--ink-faint);font-size:11px;font-variant-numeric:tabular-nums;
+    min-width:14px;
+  }
+  .rail a:hover{color:var(--accent)}
+  .rail a:hover .n{color:var(--accent)}
+
+  /* ---------- masthead ---------- */
+  .doc{min-width:0;max-width:68ch}
+  .eyebrow{
+    font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:700;color:var(--accent);margin:0 0 14px;
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(40px,7.2vw,62px);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    margin:0;
+    text-wrap:balance;
+  }
+  .stand{
+    font-family:var(--display);
+    font-size:clamp(18px,2.4vw,21px);
+    line-height:1.45;
+    color:var(--ink-soft);
+    font-weight:500;
+    margin:18px 0 0;
+    max-width:46ch;
+    text-wrap:balance;
+  }
+  .note{
+    margin:30px 0 0;
+    padding:16px 18px;
+    background:var(--surface);
+    border-left:3px solid var(--accent);
+    font-size:15px;
+    line-height:1.55;
+    color:var(--ink-soft);
+  }
+  .note b{color:var(--ink);font-weight:700}
+
+  /* ---------- sections ---------- */
+  section{margin-top:72px;scroll-margin-top:28px}
+  .sec-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-top:1px solid var(--ink);
+    padding-top:12px;margin-bottom:26px;
+  }
+  .sec-num{
+    font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;
+    color:var(--accent);letter-spacing:.06em;padding-top:8px;
+  }
+  h2{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(26px,4vw,34px);line-height:1.12;letter-spacing:-.012em;
+    margin:0;text-wrap:balance;
+  }
+  h3{
+    font-family:var(--body);font-weight:700;font-size:17px;line-height:1.4;
+    margin:0 0 6px;letter-spacing:-.005em;
+  }
+  p{margin:0 0 16px}
+  .doc > section > p:last-child{margin-bottom:0}
+  strong{font-weight:700}
+  em{font-style:italic;color:var(--ink-soft)}
+
+  .lead{font-size:18.5px;line-height:1.55}
+
+  /* ---------- function stack ---------- */
+  .stack{display:flex;flex-direction:column;gap:0;margin:0 0 20px}
+  .fn{
+    display:grid;
+    grid-template-columns:26px minmax(0,1fr);
+    gap:0 16px;
+    padding:20px 0;
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .fn:first-child{border-top:1px solid var(--rule-soft)}
+  .fn-rank{
+    font-family:var(--display);font-size:22px;font-weight:700;
+    color:var(--accent);line-height:1.1;font-variant-numeric:tabular-nums;
+  }
+  .fn-body{min-width:0}
+  .fn-name{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:8px;
+  }
+  .fn-name b{font-size:18px;font-weight:700;letter-spacing:-.005em}
+  .fn-tag{
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+    color:var(--ink-faint);
+  }
+  .meter{
+    height:5px;background:var(--meter-track);border-radius:3px;
+    overflow:hidden;margin:0 0 10px;max-width:260px;
+  }
+  .meter span{display:block;height:100%;background:var(--accent);border-radius:3px}
+  .fn p{margin:0;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
+  .fn p b{color:var(--ink)}
+
+  /* ---------- lists ---------- */
+  ul.plain{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:11px}
+  ul.plain > li{position:relative;padding-left:20px}
+  ul.plain > li::before{
+    content:"";position:absolute;left:2px;top:.62em;
+    width:6px;height:6px;border-radius:50%;background:var(--accent);
+  }
+  ol.do{
+    list-style:none;counter-reset:d;margin:0 0 18px;padding:0;
+    display:flex;flex-direction:column;gap:13px;
+  }
+  ol.do > li{position:relative;padding-left:32px;counter-increment:d}
+  ol.do > li::before{
+    content:counter(d);position:absolute;left:0;top:.05em;
+    width:21px;height:21px;border-radius:50%;
+    background:var(--keep-wash);color:var(--keep);
+    font-size:11.5px;font-weight:700;line-height:21px;text-align:center;
+    font-variant-numeric:tabular-nums;
+  }
+  .kicker{
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+    color:var(--ink-faint);margin:26px 0 12px;
+  }
+
+  /* ---------- lens panels ---------- */
+  .lens{
+    background:var(--surface);
+    border:1px solid var(--rule-soft);
+    padding:22px 24px;
+    margin:0 0 16px;
+  }
+  .lens:last-of-type{margin-bottom:0}
+  .lens h3{margin-bottom:8px}
+  .lens p:last-child{margin-bottom:0}
+  .lens-label{
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+    color:var(--accent);margin:0 0 5px;
+  }
+  .lens-label.cool{color:var(--ink-faint)}
+
+  /* ---------- prohibitions ---------- */
+  .dont{
+    padding:16px 0;border-bottom:1px solid var(--rule-soft);
+    display:grid;grid-template-columns:18px minmax(0,1fr);gap:0 12px;
+  }
+  .dont:first-of-type{border-top:1px solid var(--rule-soft)}
+  .dont::before{
+    content:"";width:11px;height:2px;background:var(--accent);
+    margin-top:.72em;border-radius:1px;
+  }
+  .dont p{margin:0;color:var(--ink-soft);font-size:15.5px;line-height:1.55}
+  .dont p b{color:var(--ink)}
+
+  /* ---------- stress scenarios ---------- */
+  .scenarios{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+  @media (min-width:760px){.scenarios{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .scen{
+    background:var(--surface);border:1px solid var(--rule-soft);
+    padding:22px 22px 24px;display:flex;flex-direction:column;gap:14px;
+  }
+  .scen h3{margin:0}
+  .scen-row{display:flex;flex-direction:column;gap:4px}
+  .scen-row .k{
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;
+    color:var(--ink-faint);
+  }
+  .scen-row.alarm .k{color:var(--accent)}
+  .scen-row.exit .k{color:var(--keep)}
+  .scen-row p{margin:0;font-size:15px;line-height:1.55}
+
+  /* ---------- pocket ---------- */
+  .pocket{
+    background:var(--surface-2);
+    padding:28px 26px 30px;
+    border-top:3px solid var(--accent);
+  }
+  .pocket ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .pocket li{
+    display:flex;gap:12px;align-items:baseline;
+    font-size:16px;line-height:1.5;
+  }
+  .pocket li::before{
+    content:"";flex:0 0 auto;width:7px;height:7px;
+    border:2px solid var(--accent);border-radius:2px;
+    transform:translateY(-1px);
+  }
+
+  .end{
+    margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);
+    font-size:14px;color:var(--ink-faint);
+  }
+
+  a{color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="page">
+  <nav class="rail" aria-label="Разделы">
+    <p class="rail-title">Разделы</p>
+    <ol>
+      <li><a href="#stack"><span class="n">01</span><span>Карта: четыре функции</span></a></li>
+      <li><a href="#info"><span class="n">02</span><span>Как воспринимаешь информацию</span></a></li>
+      <li><a href="#world"><span class="n">03</span><span>Как воспринимаешь мир</span></a></li>
+      <li><a href="#learn"><span class="n">04</span><span>Как учишься</span></a></li>
+      <li><a href="#understand"><span class="n">05</span><span>Как понимаешь</span></a></li>
+      <li><a href="#decide"><span class="n">06</span><span>Как решаешь</span></a></li>
+      <li><a href="#act"><span class="n">07</span><span>Как действуешь</span></a></li>
+      <li><a href="#comfort"><span class="n">08</span><span>Как тебе комфортно</span></a></li>
+      <li><a href="#people"><span class="n">09</span><span>Как видят люди</span></a></li>
+      <li><a href="#women"><span class="n">10</span><span>Как видят женщины</span></a></li>
+      <li><a href="#men"><span class="n">11</span><span>Как видят мужчины</span></a></li>
+      <li><a href="#not"><span class="n">12</span><span>Как не быть</span></a></li>
+      <li><a href="#stress"><span class="n">13</span><span>Стресс</span></a></li>
+      <li><a href="#life"><span class="n">14</span><span>Деньги, работа, тело</span></a></li>
+      <li><a href="#pocket"><span class="n">15</span><span>Карманная версия</span></a></li>
+    </ol>
+  </nav>
+
+  <main class="doc">
+    <header class="masthead">
+      <p class="eyebrow">Практическое руководство · ESFP</p>
+      <h1>Тело знает первым</h1>
+      <p class="stand">Как ты воспринимаешь, учишься, решаешь, действуешь — и как тебя читают люди.</p>
+      <p class="note">Типология — это карта, а не приговор и не диагноз. Бери то, в чём узнаёшь себя, остальное отложи. <b>Тип описывает не потолок, а то, где тебе дёшево, а где дорого.</b></p>
+    </header>
+
+    <section id="stack">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Карта: четыре функции по силе</h2></div>
+      <p class="lead">У тебя четыре способа обрабатывать реальность, и они выстроены по силе. Это единственная настоящая последовательность в этом тексте — всё остальное здесь просто следствия из этих четырёх строк.</p>
+      <div class="stack">
+        <div class="fn">
+          <div class="fn-rank">1</div>
+          <div class="fn-body">
+            <div class="fn-name"><b>Se · ощущение вовне</b><span class="fn-tag">Родной язык</span></div>
+            <div class="meter"><span style="width:100%"></span></div>
+            <p>Прямое подключение к физическому миру: тело, движение, детали, вкус, темп, возможность прямо сейчас. Ты не думаешь о реальности — <b>ты в неё включена</b>.</p>
+          </div>
+        </div>
+        <div class="fn">
+          <div class="fn-rank">2</div>
+          <div class="fn-body">
+            <div class="fn-name"><b>Fi · чувство внутрь</b><span class="fn-tag">Второй язык</span></div>
+            <div class="meter"><span style="width:72%"></span></div>
+            <p>Личная шкала «моё / не моё», «честно / нечестно». Не эмоции, а <b>система ценностей, которую ты не выбирала</b> и не можешь отменить решением.</p>
+          </div>
+        </div>
+        <div class="fn">
+          <div class="fn-rank">3</div>
+          <div class="fn-body">
+            <div class="fn-name"><b>Te · логика вовне</b><span class="fn-tag">Школьный язык</span></div>
+            <div class="meter"><span style="width:42%"></span></div>
+            <p>Сроки, цифры, результат, «просто сделай». Включается рывками, чаще под давлением. Язык, на котором ты <b>можешь объясниться, но не можешь думать</b>.</p>
+          </div>
+        </div>
+        <div class="fn">
+          <div class="fn-rank">4</div>
+          <div class="fn-body">
+            <div class="fn-name"><b>Ni · интуиция внутрь</b><span class="fn-tag">Аварийный язык</span></div>
+            <div class="meter"><span style="width:16%"></span></div>
+            <p>Долгая перспектива, единственный смысл, «чем всё это кончится». Самая слабая. Ты говоришь на нём, только когда в панике — <b>и именно поэтому он звучит как истина</b>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="info">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Как ты воспринимаешь информацию</h2></div>
+      <p><strong>Каналы по убыванию:</strong> тело → глаза → живой человек → текст.</p>
+      <ul class="plain">
+        <li>Ты берёшь конкретику, а не обобщение. «Покажи» работает. «Объясни концепцию» — нет.</li>
+        <li>Ты замечаешь то, что <em>реально</em> происходит, а не то, что должно: смена дыхания, куда человек поставил ногу, где напряглась челюсть. Это не мистика — это прямое считывание микросигналов, и у тебя оно быстрее, чем у большинства.</li>
+        <li>Абстракция без примера не удерживается. Не потому что не понимаешь — не за что зацепиться.</li>
+        <li>Твоё внимание — прожектор, а не рассеянный свет: очень яркое пятно и темнота вокруг. Отсюда и лёгкая отвлекаемость, и твоя фантастическая собранность в кризисе.</li>
+      </ul>
+      <p class="kicker">Что с этим делать</p>
+      <ol class="do">
+        <li>Требуй пример. Фраза-ключ: «дай конкретный случай — как это выглядит в комнате».</li>
+        <li>Переводи теорию в действие: «что я делаю руками по-другому после этого?» Нет ответа — информация к тебе не приклеится, и это нормально.</li>
+        <li>Важное — глазами и на бумаге. Список в телефоне для тебя физически не существует.</li>
+      </ol>
+    </section>
+
+    <section id="world">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Как ты воспринимаешь мир</h2></div>
+      <ul class="plain">
+        <li>Мир для тебя — <strong>поле возможностей, а не список угроз</strong>. По умолчанию он щедрый. Это редкая настройка, и она — половина твоего обаяния.</li>
+        <li>Ты живёшь в настоящем времени. Прошлое — хранилище ощущений, будущее — размытое пятно. Козырь: тебя не парализует. Счёт: то, что не назначено на сегодня, для тебя не существует.</li>
+        <li>Атмосферу комнаты ты считываешь за три секунды, и обычно правильно. Но ты считываешь <strong>состояние</strong>, а не <strong>намерение</strong>. Это разные вещи, и путать их дорого.</li>
+        <li>Красота для тебя — функция, а не роскошь. В уродливом, тесном, шумном пространстве у тебя реально падает работоспособность. Это не капризы, это твой основной канал ввода.</li>
+      </ul>
+    </section>
+
+    <section id="learn">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Как ты учишься</h2></div>
+      <p class="lead">Твоя формула — не «понять → сделать», а <strong>«сделать плохо → получить обратную связь → повторить»</strong>. Попытка учиться в правильном порядке ломает тебе весь процесс.</p>
+      <p class="kicker">Работает</p>
+      <ul class="plain">
+        <li>Живой мастер рядом &gt; курс. Видео &gt; текст. Руки &gt; конспект.</li>
+        <li>Быстрый видимый результат. Без него интерес умирает — это конструкция, а не лень.</li>
+        <li><strong>Правило трёх касаний:</strong> новое отработать три раза в первые 72 часа. Иначе телесная память не запишет и придётся учить заново.</li>
+        <li>Объясняй вслух другому. Ты достраиваешь понимание, пока говоришь.</li>
+        <li>Снимай себя на видео и пересматривай — это твой единственный дешёвый способ увидеть себя со стороны. Изнутри тебе не видно ничего.</li>
+        <li>Скучное — подходами по 20–25 минут, максимум три подряд, с наградой в теле после: движение, еда, музыка, душ.</li>
+      </ul>
+      <p class="kicker">Не работает и не заработает</p>
+      <ul class="plain">
+        <li>Длинная теория без практики.</li>
+        <li>Учёба в одиночестве и в тишине.</li>
+        <li>«Сначала прочитаю всё, потом начну». Так ты не начнёшь.</li>
+      </ul>
+    </section>
+
+    <section id="understand">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Как ты понимаешь</h2></div>
+      <p>Ты понимаешь через резонанс: примеряешь состояние человека на себя и чувствуешь ответ. Быстро и часто точно — точнее, чем люди говорят о себе словами.</p>
+      <p><strong>Где тут ловушка.</strong> Ты точно считываешь, <em>что</em> человек чувствует, но додумываешь, <em>почему</em>, — и подставляешь свои причины. Это главная системная ошибка второй функции: чужое поведение объясняется твоей мотивацией.</p>
+      <p>Разделяй две фразы:</p>
+      <ul class="plain">
+        <li>«Я вижу, что ты напряжён» — <strong>факт</strong>. Ты правда это видишь.</li>
+        <li>«Ты злишься на меня» — <strong>гипотеза</strong>. Её надо проверить вопросом, а не пережить как правду.</li>
+      </ul>
+      <p>Кого ты понимаешь хуже всего: людей, у которых чувства спрятаны за логикой. Они не холодные — у них другой канал. Не требуй от них твоего словаря, смотри на дела, а не на слова.</p>
+    </section>
+
+    <section id="decide">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Как ты принимаешь решения</h2></div>
+      <p><strong>Механика.</strong> Se подаёт «что вообще доступно прямо сейчас», Fi выносит вердикт «моё / не моё». Быстро, честно и почти всегда — про ценность, а не про выгоду.</p>
+      <p><strong>Где ты сильна:</strong> в кризисе; при живом контакте; когда надо выбрать человека; когда ставка ясна и всё происходит сегодня. Здесь ты обгоняешь почти всех.</p>
+      <p><strong>Где ты слаба:</strong> когда цена решения проявится через год; когда правильный вариант скучный; когда решаешь на пике эмоции — любой, включая радость.</p>
+      <p class="kicker">Три вопроса перед необратимым или дорогим</p>
+      <ol class="do">
+        <li>Это моё — или я просто не хочу разочаровать конкретного человека прямо сейчас?</li>
+        <li>Что это будет стоить мне через год? Одним предложением, письменно. Письменно — обязательно: так ты заставляешь работать самую слабую функцию.</li>
+        <li>Кто платит, если я ошиблась?</li>
+      </ol>
+      <p><strong>Правило паузы.</strong> Необратимое — не в тот же день. 24 часа на среднее, 72 на крупное. Пауза — это твоя недостающая функция, купленная за время. Больше её взять негде.</p>
+      <p><strong>Не решай:</strong> голодной, невыспавшейся, сразу после ссоры, внутри чужой сильной эмоции, в состоянии «всё пропало».</p>
+      <p><strong>Если решать всё-таки надо сейчас:</strong> спроси себя, что бы ты посоветовала подруге в этой же ситуации. Этот вопрос включает третью функцию и снимает искажение второй за пять секунд.</p>
+    </section>
+
+    <section id="act">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Как ты действуешь</h2></div>
+      <p class="lead">Ты спринтер: высокий темп, короткая дистанция, видимый финиш.</p>
+      <p><strong>Включаешься от:</strong> срочности, живых людей, ставки, азарта, красоты процесса.<br><strong>Глохнешь на:</strong> невидимой длинной работе, бумагах, отложенном результате, одиночной рутине.</p>
+      <p>Это не чинится дисциплиной. Это выносится наружу:</p>
+      <ul class="plain">
+        <li><strong>Всё невидимое сделай физическим.</strong> Бумажный календарь на стене. Отдельные счета или конверты для денег. Доска. Стикеры. Чего не видно глазами — того для тебя нет.</li>
+        <li><strong>Дедлайн должен быть с человеком, а не с собой.</strong> «Сдаю Кате в четверг» работает. «Сделаю к четвергу» — нет, и ты это про себя знаешь.</li>
+        <li><strong>Спринты 25/5</strong>, максимум три подряд, потом движение.</li>
+        <li><strong>Рутину привязывай к телу и месту</strong>, а не к силе воли: ритуал после душа, на том же стуле, в то же время. Воля у тебя есть, но она дорогая — не трать её на быт.</li>
+        <li><strong>Одно длинное видимое дело в год.</strong> То, что нельзя сделать за неделю и что можно потом показать. Без этого копится ощущение «я разбрасываюсь», и оно точит сильнее любой внешней критики.</li>
+      </ul>
+    </section>
+
+    <section id="comfort">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Как тебе комфортно</h2></div>
+      <ul class="plain">
+        <li>Свобода движения и возможность уйти. Даже если не уходишь — важно знать, что можешь.</li>
+        <li>Выбор вместо расписания. Рамка «что» — да. Регламент «как» — нет.</li>
+        <li>Живые люди, прикосновения, музыка, вкус, свет, воздух, тепло.</li>
+        <li>Разнообразие. Одинаковые недели гасят тебя быстрее, чем большая нагрузка.</li>
+        <li>Прямая речь. Молчание и «сама догадайся» разрушают тебя сильнее открытого конфликта.</li>
+        <li>Быстрое закрытие конфликта. Тебе нужен ответ сегодня, а не «поговорим через неделю».</li>
+      </ul>
+      <p><strong>Что тебя не «раздражает», а именно выключает:</strong> микроменеджмент; долгая изоляция; эмоционально холодная среда; критика личности вместо критики работы; невозможность физически сдвинуться; тесное уродливое пространство; необходимость долго держать лицо.</p>
+      <p>Если в твоей жизни три таких пункта одновременно — дело не в характере и не в силе воли. <strong>Меняй условия, а не себя.</strong></p>
+    </section>
+
+    <section id="people">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Как тебя видят люди</h2></div>
+      <p><strong>Первые десять секунд:</strong> живая, тёплая, лёгкая, физически присутствующая, «с ней не скучно».</p>
+      <p><strong>Что достаётся бесплатно:</strong> доверие, внимание, готовность идти за тобой в моменте, презумпция «хороший человек». Это огромный стартовый капитал — и ты к нему настолько привыкла, что не замечаешь его.</p>
+      <p><strong>Главная несправедливость:</strong> живость читают как поверхностность. Тебя систематически недооценивают в уме и в глубине. Это не твоя вина — но разгребать это тебе.</p>
+      <p class="kicker">Что считывают, а ты не замечаешь</p>
+      <ul class="plain">
+        <li>«У неё всегда есть время» → тебя легко просить, и просят много.</li>
+        <li>«Она не обидится» → тебе говорят лишнее.</li>
+        <li>«С ней несерьёзно» → тебя не зовут в долгие проекты.</li>
+        <li>«Она справится» → тебе не предлагают помощь.</li>
+      </ul>
+      <p class="kicker">Четыре рычага — от самого дешёвого</p>
+      <ol class="do">
+        <li><strong>Надёжность в мелочах.</strong> Пришла вовремя три раза подряд — и ты «серьёзный человек». Самый дешёвый апгрейд репутации из всех тебе доступных.</li>
+        <li><strong>Одно завершённое длинное дело</strong>, которое видно снаружи.</li>
+        <li><strong>Пауза перед ответом.</strong> Секунда молчания добавляет тебе веса больше, чем любой аргумент.</li>
+        <li><strong>Цифры и сроки</strong> там, где ты обычно говоришь ощущениями. Это третья функция — включай сознательно на пять минут и выключай обратно.</li>
+      </ol>
+    </section>
+
+    <section id="women">
+      <div class="sec-head"><span class="sec-num">10</span><h2>Как тебя видят женщины</h2></div>
+      <p>Дальше — не про всех, а про частые реакции, с которыми ты будешь сталкиваться чаще среднего. Обе полярности — про одно и то же: про твою заметность.</p>
+      <div class="lens">
+        <p class="lens-label">Тёплый полюс</p>
+        <h3>«С ней оживаешь»</h3>
+        <p>Щедрая, не осуждает, придёт в беде физически — привезёт еду, обнимет, просидит ночь. Тебя очень любят как подругу в кризисе, и это заслуженно.</p>
+      </div>
+      <div class="lens">
+        <p class="lens-label cool">Холодный полюс</p>
+        <h3>«Слишком много и несерьёзно»</h3>
+        <p>«Работает на публику», «ненадёжная — отменяет и опаздывает», «флиртует со всеми». Часто это вообще не про тебя, а про то, что внимание в комнате перераспределяется без твоего усилия. Считывается как конкуренция, даже когда ты ни при чём.</p>
+      </div>
+      <div class="lens">
+        <p class="lens-label cool">Чего они не видят</p>
+        <p>Твою жёсткую внутреннюю шкалу. То, что ты не выбирала быть заметной. И то, как ты потом отходишь одна.</p>
+      </div>
+      <p class="kicker">Что делать</p>
+      <ol class="do">
+        <li><strong>Надёжность — главный рычаг именно здесь.</strong> Не отменяй. Не опаздывай. Женщины прощают яркость и не прощают ненадёжность.</li>
+        <li><strong>Хвали конкретно и в лицо.</strong> Не «ты классная», а «ты вчера очень точно сказала про то-то». Конкретная похвала снимает конкуренцию быстрее всего остального.</li>
+        <li><strong>Отдавай сцену.</strong> Задай вопрос и замолчи. Ты не теряешь ничего, а тебя перестают читать как соперницу.</li>
+        <li><strong>Не приглушай себя надолго.</strong> Приглушённая ты становишься раздражённой, и это считывается хуже, чем твоя обычная яркость.</li>
+        <li><strong>Не обсуждай мужчин общих подруг</strong> — даже нейтрально, даже в шутку. Из-за фона восприятия тебе это будет стоить дороже, чем другим.</li>
+      </ol>
+    </section>
+
+    <section id="men">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Как тебя видят мужчины</h2></div>
+      <p>Снова: это про частые реакции, а не про всех.</p>
+      <p><strong>Первая реакция почти всегда телесная:</strong> витальность, лёгкость, тепло, «с ней просто». Ты кажешься эмоционально открытой — и это регулярно читают как доступность вообще.</p>
+      <div class="lens">
+        <p class="lens-label">Главный перекос</p>
+        <h3>Один жест — два разных смысла</h3>
+        <p>Твой обычный фон — тактильность, взгляд, включённость, смех — для тебя норма общения. Для многих мужчин это адресный сигнал. <strong>Ты отправляешь «мне здесь хорошо». Он получает «она выбрала меня».</strong> Дальше обида на пустом месте, с обеих сторон.</p>
+      </div>
+      <div class="lens">
+        <p class="lens-label cool">Чего не видят</p>
+        <h3>Твои границы жёстче твоего стиля</h3>
+        <p>Вторая функция снаружи невидима. Мужчины регулярно удивляются, упираясь в твои границы, и злятся, потому что чувствуют себя обманутыми. Обмана не было — был разный словарь.</p>
+      </div>
+      <div class="lens">
+        <p class="lens-label cool">Второй перекос</p>
+        <h3>Сначала «получить», потом «успокоить»</h3>
+        <p>Тот, кого притянула твоя подвижность, через год просит её выключить. Это предсказуемо — замечай на входе, а не на третьем году.</p>
+      </div>
+      <p class="kicker">Что делать</p>
+      <ol class="do">
+        <li><strong>Разводи сигнал и намерение словами, рано и просто.</strong> «Я со всеми такая», «мне это в удовольствие, но я не про роман». Одна прямая фраза дешевле, чем полгода недоразумения.</li>
+        <li><strong>Замедляй телесный таймлайн.</strong> Твоя скорость сближения выше средней, и она не даёт человеку времени показать характер. Три встречи без физического ускорения — и ты увидишь, кто он, когда его не поощряют.</li>
+        <li><strong>Твой ранний сигнал «что-то не то» почти всегда прав.</strong> Ты ошибаешься не в чтении — ты отменяешь прочитанное вежливостью и обаянием. Не отменяй.</li>
+        <li><strong>Проверяй поведение в скучном</strong>, а не слова в интересном: как он ведёт себя, когда неинтересно, когда ты болеешь, когда надо ждать.</li>
+        <li><strong>Спокойный рядом с твоей энергией — это признак, а не скука.</strong> Мужчина, который не пытается ни присвоить её, ни выключить, — редкость. И не путай спокойствие с отсутствием чувств: у многих чувства приходят делами, а не словами.</li>
+      </ol>
+    </section>
+
+    <section id="not">
+      <div class="sec-head"><span class="sec-num">12</span><h2>Как не быть</h2></div>
+      <div class="dont"><p><b>Не становись ролью «весёлая».</b> Если тебя зовут только оживить компанию — ты в клетке, сделанной из комплиментов.</p></div>
+      <div class="dont"><p><b>Не путай интенсивность с близостью.</b> Сильно ≠ глубоко. Сильно — это первая функция. Глубоко — это время, и другого способа нет.</p></div>
+      <div class="dont"><p><b>Не доказывай серьёзность сухостью.</b> Приглушённая ESFP выглядит не умной, а уставшей. Твоя серьёзность — это надёжность и завершённые дела, а не тон голоса.</p></div>
+      <div class="dont"><p><b>Не решай на пике</b> — ни на пике любви, ни на пике обиды.</p></div>
+      <div class="dont"><p><b>Не жги мосты красиво.</b> Один эффектный уход стоит дороже трёх лет репутации.</p></div>
+      <div class="dont"><p><b>Не бери на себя настроение комнаты.</b> Ты умеешь его выравнивать — поэтому это молча вешают на тебя. Это не твоя работа и не твоя обязанность.</p></div>
+      <div class="dont"><p><b>Не откладывай скучное жизненно важное:</b> документы, деньги, договоры, обследования. Твоя главная зона реального риска — не характер, а бумаги.</p></div>
+      <div class="dont"><p><b>Не проверяй свою ценность новой волной впечатлений.</b> Хочется резко всё поменять — сначала выспись. Если наутро всё ещё хочется, это уже решение, а не состояние.</p></div>
+      <div class="dont"><p><b>Не строй жизнь, в которой надо долго сидеть неподвижно и молча.</b> Это не про характер, это про конструкцию. Ты сломаешься не от нагрузки, а от неподвижности.</p></div>
+      <div class="dont"><p><b>Не меряй себя чужой линейкой.</b> Ты не планируешь на пять лет и не любишь теорию. Твой ум — быстрый, полевой, телесный. Он не хуже. Он другой, и он редкий.</p></div>
+    </section>
+
+    <section id="stress">
+      <div class="sec-head"><span class="sec-num">13</span><h2>Стресс: два сценария</h2></div>
+      <div class="scenarios">
+        <div class="scen">
+          <h3>А. Петля «ощущения + обида»</h3>
+          <div class="scen-row"><span class="k">Как выглядит</span><p>Покупки, еда, алкоголь, драма, новый роман, резкие сообщения, смена работы за один вечер, «меня никто не понимает».</p></div>
+          <div class="scen-row"><span class="k">Что на самом деле</span><p>Ты пытаешься заглушить чувство ощущением. Оно не глушится — откладывается.</p></div>
+          <div class="scen-row exit"><span class="k">Выход, по порядку</span><p>Нагрузка (именно нагрузка, а не развлечение) → сон → вода и еда → один разговор с одним человеком → одно маленькое дело, доведённое до конца.</p></div>
+        </div>
+        <div class="scen">
+          <h3>Б. Захват «всё кончено»</h3>
+          <div class="scen-row"><span class="k">Как выглядит</span><p>Внезапная тёмная уверенность про будущее: «он меня бросит», «я всё разрушила», «это никогда не сработает». Подозрительность к чужим намерениям, ступор, изоляция. Состояние редкое — и поэтому ощущается как открывшаяся истина.</p></div>
+          <div class="scen-row"><span class="k">Что на самом деле</span><p>Включилась самая слабая функция и работает без тормозов. Её прогнозы — не данные. Ни один из них.</p></div>
+          <div class="scen-row alarm"><span class="k">Маркер входа</span><p>Тебе перестало хотеться выходить из дома. Для тебя это тревожный сигнал первого уровня — реагируй сразу.</p></div>
+          <div class="scen-row exit"><span class="k">Выход</span><p>Правило «в этом состоянии я ничего не решаю и никому не пишу». Дальше физика: холодная вода, ходьба, дыхание, руки в чём-то материальном. Потом сон. Разговор — только после сна.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="life">
+      <div class="sec-head"><span class="sec-num">14</span><h2>Деньги, работа, тело</h2></div>
+      <p><strong>Деньги.</strong> Разделяй в день поступления, автоматически, до того как увидишь сумму целиком. Отдельный счёт под обязательное, отдельный — «фонд будущей меня». Не рассчитывай на волю в момент траты: у тебя её там не будет, и это не слабость, это устройство. Наличные и конверты работают лучше приложений — потому что видимы.</p>
+      <p><strong>Работа.</strong> Тебе идёт всё, где есть живой человек напротив, тело и быстрый результат: реабилитация и работа с телом, тренерство, преподавание, продажи, сервис, события, сцена. Тебе не идут долгие невидимые проекты в одиночестве. Не заставляй себя — меняй формат.</p>
+      <p><strong>Тело.</strong> Ты не «имеешь» тело — ты им думаешь. Спорт для тебя не ЗОЖ, а условие психической устойчивости. И недосып бьёт по тебе сильнее, чем по большинству: он выключает первую функцию и включает четвёртую. Поэтому невыспавшаяся ты — это не уставшая ты, а <strong>другой человек с плохими прогнозами</strong>.</p>
+    </section>
+
+    <section id="pocket">
+      <div class="sec-head"><span class="sec-num">15</span><h2>Карманная версия</h2></div>
+      <div class="pocket">
+        <ul>
+          <li>Сначала тело: сон, еда, движение. Потом решения.</li>
+          <li>Необратимое — не сегодня. 24 часа. Крупное — 72.</li>
+          <li>Напиши одно предложение: что это будет стоить через год.</li>
+          <li>Если бы это была подруга — что бы я ей посоветовала?</li>
+          <li>Чего не видно глазами — того для меня нет. Вынеси наружу.</li>
+          <li>Дедлайн — с человеком, а не с собой.</li>
+          <li>«Я вижу» — факт. «Он думает» — гипотеза. Проверь вопросом.</li>
+          <li>Мой ранний сигнал прав. Вежливость его не отменяет.</li>
+          <li>Приходи вовремя. Дешевле способа стать «серьёзной» нет.</li>
+          <li>Хвали конкретно и в лицо.</li>
+          <li>Не хочется выходить из дома — сигнал тревоги, не лень.</li>
+          <li>Одно длинное дело в год, которое видно.</li>
+        </ul>
+      </div>
+      <p class="end">Всё, что здесь написано, проверяется одним способом — телом. Что откликается, то твоё; что не откликается, отложи и вернись через полгода.</p>
+    </section>
+  </main>
+</div>
