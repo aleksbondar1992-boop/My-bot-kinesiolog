@@ -15,6 +15,7 @@
     --rule:#DDCDCF;
     --rule-soft:#E9DDDE;
     --meter-track:#E4D6D8;
+    --s2:#4E3B93; --s2w:#EAE6FA; --s4:#8E5A12; --s4w:#F7EAD6;
     --display:"Alegreya","Georgia",serif;
     --body:"Alegreya Sans","Helvetica Neue",Arial,sans-serif;
   }
@@ -33,6 +34,7 @@
       --rule:#3A2A2E;
       --rule-soft:#2C2124;
       --meter-track:#332528;
+    --s2:#AC9CF5; --s2w:#241E42; --s4:#E4A945; --s4w:#372711;
     }
   }
   :root[data-theme="dark"]{
@@ -49,6 +51,7 @@
     --rule:#3A2A2E;
     --rule-soft:#2C2124;
     --meter-track:#332528;
+  --s2:#AC9CF5; --s2w:#241E42; --s4:#E4A945; --s4w:#372711;
   }
 
   *,*::before,*::after{box-sizing:border-box}
@@ -433,6 +436,77 @@
     .end{break-inside:avoid}
   }
 
+  /* ---------- §16 практикум ---------- */
+/* цепочка */
+  .chain{display:grid;gap:10px;grid-template-columns:minmax(0,1fr);margin:34px 0 8px}
+  @media (min-width:640px){.chain{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}}
+  .link{
+    background:var(--surface);border-top:4px solid var(--c);
+    padding:14px 14px 16px;position:relative;
+  }
+  .link .w{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.1;display:block;margin-bottom:5px}
+  .link .d{font-size:14.5px;line-height:1.4;color:var(--ink-soft);display:block}
+  @media (min-width:640px){
+    .link:not(:last-child)::after{
+      content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);
+      color:var(--ink-faint);font-size:15px;z-index:1;
+    }
+  }
+  .chainline{
+    font-family:var(--display);font-size:clamp(19px,3.4vw,26px);font-weight:700;
+    text-align:center;color:var(--accent);margin:0 0 40px;padding:16px 8px;
+    border-bottom:1px solid var(--rule);text-wrap:balance;
+  }
+
+  /* части */
+  .part{margin:52px 0 0}
+  .part-head{display:flex;align-items:baseline;gap:12px;border-top:3px solid var(--c);padding-top:12px;margin-bottom:16px}
+  .part-n{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--c)}
+  .part h2{font-family:var(--display);font-size:clamp(28px,5vw,38px);font-weight:700;line-height:1.08;margin:0;letter-spacing:-.015em}
+  .intro{font-size:18px;line-height:1.55;margin:0 0 26px}
+  .intro b{font-weight:700}
+
+  /* упражнение */
+  .ex{background:var(--surface);border:1px solid var(--rule-soft);border-left:4px solid var(--c);padding:20px 22px;margin:0 0 14px}
+  .ex h3{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.15;margin:0 0 4px;letter-spacing:-.01em}
+  .ex .meta{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--c);margin:0 0 14px}
+  .row{margin:0 0 12px}
+  .row:last-child{margin:0}
+  .lab{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink-faint);margin-bottom:3px}
+  .row p{margin:0;font-size:16.5px;line-height:1.5}
+  .row.act p{font-weight:500}
+  .row.act .lab{color:var(--c)}
+  .quote{
+    display:block;font-family:var(--display);font-size:18px;font-weight:700;
+    margin:8px 0 0;padding:10px 12px;background:var(--cw);border-left:2px solid var(--c);line-height:1.35;
+  }
+
+  /* ловушка */
+  .trap{border:1px solid var(--accent);background:var(--accent-wash);padding:18px 20px;margin:18px 0 0}
+  .trap .tl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--accent);margin:0 0 6px}
+  .trap h3{font-family:var(--display);font-size:20px;font-weight:700;margin:0 0 10px;line-height:1.2}
+  .trap p{margin:0 0 9px;font-size:16px;line-height:1.5}
+  .trap p:last-child{margin:0}
+  .trap b{font-weight:700}
+
+  /* финал */
+  .final{background:var(--surface-2);padding:26px 24px;margin:52px 0 0;border-top:3px solid var(--accent)}
+  .final h2{font-family:var(--display);font-size:28px;font-weight:700;margin:0 0 8px;line-height:1.1}
+  .final ol{list-style:none;counter-reset:f;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+  .final ol li{counter-increment:f;position:relative;padding-left:34px;font-size:17px;line-height:1.45}
+  .final ol li::before{
+    content:counter(f);position:absolute;left:0;top:.1em;width:22px;height:22px;border-radius:50%;
+    background:var(--accent);color:var(--bg);font-size:12px;font-weight:700;line-height:22px;text-align:center;
+  }
+  .final ol li b{font-weight:700}
+  ul.marks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+  ul.marks li{position:relative;padding-left:22px;font-size:16.5px;line-height:1.45}
+  ul.marks li::before{content:"";position:absolute;left:2px;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--keep)}
+  h2.plain{font-family:var(--display);font-size:26px;font-weight:700;margin:44px 0 14px;line-height:1.12}
+  .stop{border-left:4px solid var(--accent);background:var(--surface);padding:18px 20px;margin:20px 0 0;font-size:16.5px;line-height:1.5}
+  .stop b{font-weight:700}
+
+
   a{color:var(--accent)}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -457,7 +531,8 @@
       <li><a href="#stress"><span class="n">13</span><span>Стресс</span></a></li>
       <li><a href="#life"><span class="n">14</span><span>Деньги, работа, тело</span></a></li>
       <li><a href="#body"><span class="n">15</span><span>Тело и функции</span></a></li>
-      <li><a href="#pocket"><span class="n">16</span><span>Карманная версия</span></a></li>
+      <li><a href="#prak"><span class="n">16</span><span>Практикум</span></a></li>
+      <li><a href="#pocket"><span class="n">17</span><span>Карманная версия</span></a></li>
     </ol>
   </nav>
 
@@ -1033,8 +1108,166 @@
       <p>Не подгоняй ощущения под таблицу — под неё подгоняется что угодно, и в этом её главная слабость. Работает у тебя два пункта из двадцати — пользуйся двумя. Не работает ни один — закрой главу, ничего не потеряв: всё, что в этом блоке действительно доказано, живёт в §14 и сводится к сну, еде, воде и движению.</p>
     </section>
 
+    <section id="prak">
+      <div class="sec-head"><span class="sec-num">16</span><h2>Практикум: сначала глаз</h2></div>
+      <p class="frame">Ты не думаешь, а потом смотришь. Ты смотришь — и доходит потом. <b>Порядок у тебя такой: глаз, нутро, язык, и только в конце понимание.</b> Он рабочий, и переучиваться не надо. Ломается он в одном месте — когда ты пропускаешь первый шаг и начинаешь с того, что «и так понятно». Ниже двенадцать упражнений, чтобы вернуть глаз на место. Все делаются на живых людях, ни одно не занимает больше пятнадцати минут. Здесь нет ни одного термина — они тут не нужны.</p>
+      <p class="frame">Ты не думаешь, а потом смотришь. Ты смотришь — и доходит потом. <b>Порядок у тебя такой: глаз, нутро, язык, и только в конце понимание.</b> Он рабочий, и переучиваться не надо. Ломается он в одном месте — когда ты пропускаешь первый шаг и начинаешь с того, что «и так понятно». Здесь двенадцать упражнений, чтобы вернуть глаз на место. Все делаются на живых людях, ни одно не занимает больше пятнадцати минут.</p>
+      <div class="chain">
+      <div class="link" style="--c:var(--accent)"><span class="w">Глаз</span><span class="d">Смотрю в одну точку и вижу деталь</span></div>
+      <div class="link" style="--c:var(--s2)"><span class="w">Нутро</span><span class="d">Деталь падает внутрь, и там отвечает</span></div>
+      <div class="link" style="--c:var(--keep)"><span class="w">Язык</span><span class="d">Складывается образ, который можно сказать</span></div>
+      <div class="link" style="--c:var(--s4)"><span class="w">Доходит</span><span class="d">Понимаю, что это за человек и в чём дело</span></div>
+      </div>
+      <p class="chainline">Увидела — отозвалось — сказала — дошло</p>
+      <div class="part" style="--c:var(--accent);--cw:var(--accent-wash)">
+      <div class="part-head"><span class="part-n">Часть первая</span><h2>Глаз</h2></div>
+      <p class="intro">Ты смотришь не как все. Все смотрят широко и мутно — ты смотришь узко и очень чётко. Одна точка, и про эту точку ты видишь больше, чем кто угодно в комнате. <b>Это твой главный инструмент, и он работает сам.</b> Единственное, что с ним можно сделать плохого, — не дать ему доработать: посмотреть полсекунды и решить, что уже понятно.</p>
+      <div class="ex" style="--c:var(--accent);--cw:var(--accent-wash)">
+      <h3>1. Три вещи</h3>
+      <p class="meta">На ком угодно · 30 секунд</p>
+      <div class="row act"><span class="lab">Делай</span><p>Пока человек говорит, найди и назови про себя три вещи, которые ты <em>видишь глазами</em>. «Он нервничает» не годится — это уже вывод. Годится: правое плечо выше, дышит верхом, крутит кольцо.</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>На третьей вещи разговор станет медленнее и понятнее. Это не магия — ты просто дала глазу доработать.</p></div>
+      <div class="row"><span class="lab">Если не идёт</span><p>Значит вывод уже сделан, и ты смотришь на него, а не на человека. Начни с самого скучного: во что одет, куда смотрит, где руки.</p></div>
+      </div>
+      <div class="ex" style="--c:var(--accent);--cw:var(--accent-wash)">
+      <h3>2. Одна точка</h3>
+      <p class="meta">Где угодно, хоть в транспорте · 20 секунд</p>
+      <div class="row act"><span class="lab">Делай</span><p>Выбери одну точку — кисть, челюсть, стопу. Смотри только на неё. Считай детали: как лежит, что делает, меняется ли.</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>За двадцать секунд наберётся пять-семь деталей там, где казалось, что смотреть не на что. Вот это и есть твоя резкость.</p></div>
+      <div class="row"><span class="lab">Зачем</span><p>На приёме это даёт тебе то, чего человек про себя не расскажет — потому что сам не знает.</p></div>
+      </div>
+      <div class="ex" style="--c:var(--accent);--cw:var(--accent-wash)">
+      <h3>3. Что сменилось</h3>
+      <p class="meta">В живом разговоре · весь разговор</p>
+      <div class="row act"><span class="lab">Делай</span><p>Не следи за смыслом. Лови момент, когда физически что-то сменилось: вдох ушёл выше, отвернулся, замолчал на полтакта, переставил ногу. И запомни, на каком слове это случилось.</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Ты поймаешь это раньше, чем он сам поймёт, что его задело.</p></div>
+      <div class="row"><span class="lab">Что с этим делать</span><p>Именно это слово потом и стоит вернуть ему вопросом.</p></div>
+      </div>
+      <div class="trap">
+      <p class="tl">Ловушка первой части</p>
+      <h3>«Он всем видом»</h3>
+      <p><b>Как звучит:</b> «он как будто злился», «по нему было понятно», «он всем видом показывал».</p>
+      <p><b>Что происходит:</b> ты пересказываешь не то, что видела, а то, что достроила. Глаз тут уже не участвовал.</p>
+      <p><b>Что делать:</b> поймай себя на «как будто» и спроси — а что я видела глазами? Ответа нет — иди и спроси человека. Не себя.</p>
+      </div>
+      </div>
+      <div class="part" style="--c:var(--s2);--cw:var(--s2w)">
+      <div class="part-head"><span class="part-n">Часть вторая</span><h2>Нутро</h2></div>
+      <p class="intro">Дальше увиденное падает внутрь, и внутри что-то отвечает. <b>Это не эмоция и не настроение — это ответ, короткий и точный:</b> моё или не моё, живое или мёртвое, теплее или холоднее. Он приходит раньше слов, и спорить с ним бесполезно. Его можно только услышать или переступить.</p>
+      <div class="ex" style="--c:var(--s2);--cw:var(--s2w)">
+      <h3>4. Где отозвалось</h3>
+      <p class="meta">После любого контакта · 10 секунд</p>
+      <div class="row act"><span class="lab">Делай</span><p>Как только человек отошёл — найди, где именно в теле отозвалось. Грудь, живот, горло, поясница, плечи. Одно место, одно слово.</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Через неделю у тебя соберётся свой словарь из четырёх-пяти мест, и ты начнёшь узнавать их мгновенно.</p></div>
+      <div class="row"><span class="lab">Зачем</span><p>Это твой прибор. Ты им и так пользуешься — просто ни разу не смотрела на шкалу.</p></div>
+      </div>
+      <div class="ex" style="--c:var(--s2);--cw:var(--s2w)">
+      <h3>5. Теплее или холоднее</h3>
+      <p class="meta">Рядом с любым человеком · 3 секунды</p>
+      <div class="row act"><span class="lab">Делай</span><p>Один вопрос, который работает всегда. Не «хороший ли он» и не «прав ли он». Только:</p><span class="quote">Мне рядом с ним сейчас теплее или холоднее?</span></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Ответ приходит мгновенно и потом почти никогда не меняется. Даже когда очень хочется, чтобы поменялся.</p></div>
+      </div>
+      <div class="ex" style="--c:var(--s2);--cw:var(--s2w)">
+      <h3>6. Два ответа, а не один</h3>
+      <p class="meta">После встречи · минута</p>
+      <div class="row act"><span class="lab">Делай</span><p>Найди <em>два</em> ответа. Первый — про него: «ему тут небезопасно», «он не врёт». Второй — про себя: «мне с ним честно», «я не хочу это вести».</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Второй ты обычно проскакиваешь. А решает как раз он: возьмёшься ты вообще или нет.</p></div>
+      </div>
+      <div class="trap">
+      <p class="tl">Ловушка второй части</p>
+      <h3>«Он это назло»</h3>
+      <p><b>Как звучит:</b> ты точно знаешь, почему он так поступил. И тебе от этого больно.</p>
+      <p><b>Что происходит:</b> слиплись две разные вещи. «Мне рядом с ним не ок» — это твой прибор, и он прав. «Он назло» — это ты подставила свою причину под его поведение.</p>
+      <p><b>Что делать:</b> первое оставь себе, второе проверь вопросом. «Ты второй раз ответил в телефон. Ты злишься или просто выжат?»</p>
+      </div>
+      </div>
+      <div class="part" style="--c:var(--keep);--cw:var(--keep-wash)">
+      <div class="part-head"><span class="part-n">Часть третья</span><h2>Язык</h2></div>
+      <p class="intro">Теперь из этого получается то, что можно сказать вслух. И вот здесь главное: <b>у тебя это не голая логика — у тебя выходит образ.</b> Картинка, собранная из того, что глаз увидел и нутро подтвердило. Поэтому она почти всегда попадает в конкретного человека. И поэтому же она разваливается, если первые два шага пропущены: наружу выходит такая же уверенная фраза, только под ней ничего нет.</p>
+      <div class="ex" style="--c:var(--keep);--cw:var(--keep-wash)">
+      <h3>7. Фраза из двух половин</h3>
+      <p class="meta">На живом человеке · сегодня</p>
+      <div class="row act"><span class="lab">Делай</span><p>Скажи вслух одну фразу, собранную из двух частей: что видел глаз плюс что ответило нутро.</p><span class="quote">«Ты второй раз посмотрел на часы, и мне от этого тревожно»</span></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Человек отвечает по делу, а не защищается. Потому что ты не обвинила — ты описала.</p></div>
+      <div class="row"><span class="lab">Зачем</span><p>Это твоя рабочая формула. Она одинаково работает и с клиентом, и с близким.</p></div>
+      </div>
+      <div class="ex" style="--c:var(--keep);--cw:var(--keep-wash)">
+      <h3>8. Шаг рукой</h3>
+      <p class="meta">Любое лежащее дело · 2 минуты</p>
+      <div class="row act"><span class="lab">Делай</span><p>Назови вслух не задачу, а первое движение руки. Не «разобраться с документами», а «взять папку с полки».</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Рука тянется сама — или не тянется. Не тянется — шаг слишком большой, дроби дальше.</p></div>
+      <div class="row"><span class="lab">Правило</span><p>Пока действие не названо рукой, для тебя его не существует. Это не лень, это устройство.</p></div>
+      </div>
+      <div class="ex" style="--c:var(--keep);--cw:var(--keep-wash)">
+      <h3>9. Скажи, пока горячо</h3>
+      <p class="meta">Одному человеку · одно предложение</p>
+      <div class="row act"><span class="lab">Делай</span><p>Одно невысказанное за сегодня — скажи сегодня, и тому, кому оно адресовано. Одним предложением. Не «нам надо поговорить», не разбор на два часа.</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Пропадает желание вести с ним разговор в голове — в душе, в машине, перед сном.</p></div>
+      </div>
+      <div class="trap">
+      <p class="tl">Ловушка третьей части</p>
+      <h3>Уверенность без опоры</h3>
+      <p><b>Как звучит:</b> вывод пришёл сам, звучит убедительно, и сомнений нет.</p>
+      <p><b>Что происходит:</b> изнутри верный вывод и пустой ощущаются одинаково. Уверенность одна и та же. Разное только то, что под ней лежит.</p>
+      <p><b>Проверка — выучи её наизусть:</b></p>
+      <span class="quote" style="--c:var(--accent);--cw:var(--accent-wash)">На какой детали и на каком чувстве это стоит?</span>
+      <p style="margin-top:9px">Деталь называется — вывод твой, иди с ним. Не называется — это настроение в форме вывода, и решать по нему нельзя.</p>
+      </div>
+      </div>
+      <div class="part" style="--c:var(--s4);--cw:var(--s4w)">
+      <div class="part-head"><span class="part-n">Часть четвёртая</span><h2>Доходит</h2></div>
+      <p class="intro">И только в конце доходит: что это за человек, что тут на самом деле происходит, в чём тут дело. <b>Не «чем кончится» — а «что это такое».</b> Приходит сразу и целиком или не приходит вовсе: черновиков этот шаг не делает. Поэтому его нельзя выжать — можно только не мешать ему прийти.</p>
+      <div class="ex" style="--c:var(--s4);--cw:var(--s4w)">
+      <h3>10. Одна фраза о сути</h3>
+      <p class="meta">После работы с человеком · в тот же день</p>
+      <div class="row act"><span class="lab">Делай</span><p>Одна фраза, которая начинается так:</p><span class="quote">«На самом деле здесь…»</span><p style="margin-top:9px">Не про будущее. Про то, что это такое.</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Получилось — сразу появляется следующий шаг: кому позвонить, что сказать в следующий раз. Не появилось — рано, подожди, оно придёт само.</p></div>
+      </div>
+      <div class="ex" style="--c:var(--s4);--cw:var(--s4w)">
+      <h3>11. Маршрут или приговор</h3>
+      <p class="meta">Когда «всё сложилось» · одна минута</p>
+      <div class="row act"><span class="lab">Делай</span><p>Посмотри на то, что у тебя сложилось, и задай один вопрос:</p><span class="quote">«Что из этого я могу сделать в ближайшие два часа?»</span></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Есть ответ — это понимание, с ним работают. «Ничего, просто это правда» — это не понимание, это вечер. Решений сегодня нет.</p></div>
+      </div>
+      <div class="ex" style="--c:var(--s4);--cw:var(--s4w)">
+      <h3>12. Конкретный день</h3>
+      <p class="meta">Перед большим решением · 5 минут письменно</p>
+      <div class="row act"><span class="lab">Делай</span><p>Не «чем это кончится», а один обычный день через год: во сколько встаю, сколько еду, кто рядом, где покупаю еду.</p></div>
+      <div class="row"><span class="lab">Что заметишь</span><p>Выйдет одна конкретная цифра, с которой можно что-то делать. «Дорога полтора часа в одну сторону — значит, танцы по вторникам кончатся». Вот это и есть настоящая картина, а не приговор.</p></div>
+      </div>
+      <div class="trap">
+      <p class="tl">Ловушка четвёртой части</p>
+      <h3>Вечернее «всё кончено»</h3>
+      <p><b>Как звучит:</b> тёмная уверенность про будущее. «Он всегда так», «я всё разрушила», «это никогда не сработает».</p>
+      <p><b>Что происходит:</b> тот же самый шаг, но на пустом баке. Ощущается как открывшаяся истина — и ощущается так всегда, права ты или нет.</p>
+      <p><b>Что делать:</b> двадцать минут ходьбы. Ничего не решать и никому не писать. Разговор — после сна.</p>
+      </div>
+      </div>
+      <div class="final">
+      <h2>Собрать целиком</h2>
+      <p>Пятнадцать минут в день, две недели, на одном живом человеке. Вслух или на бумаге — про себя не считается, у тебя не приклеится.</p>
+      <ol>
+      <li><b>Глаз.</b> Три вещи, которые я правда видела.</li>
+      <li><b>Нутро.</b> Где отозвалось — и теплее или холоднее.</li>
+      <li><b>Язык.</b> Одна фраза вслух: «я вижу… и мне от этого…».</li>
+      <li><b>Доходит.</b> «На самом деле здесь…» — и что я могу сделать за два часа.</li>
+      </ol>
+      </div>
+      <h2 class="plain">Как понять, что пошло</h2>
+      <ul class="marks">
+      <li>Ты стала ловить «как будто» в собственной речи — на середине фразы.</li>
+      <li>Между «мне не ок» и «он назло» появилась пауза.</li>
+      <li>Ты говоришь фразу в тот же день, а не через полгода.</li>
+      <li>Вечернее «всё кончено» ты узнаёшь как состояние, а не как правду.</li>
+      <li>Ты начала видеть на людях то, чего раньше не замечала, — и оно подтверждается.</li>
+      </ul>
+      <div class="stop">
+      <b>База, без которой не идёт ни один шаг.</b> Сон, еда, вода, двадцать минут движения, где сбивается дыхание. Невыспавшаяся и голодная ты — это не уставшая ты, а другой человек: глаз мутнеет первым, а «всё кончено» приходит первым делом. И если тяжесть держится неделями и не уходит от сна и еды — это не практикум, это к врачу, и обращаться стоит рано.
+      </div>
+    </section>
+
     <section id="pocket">
-      <div class="sec-head"><span class="sec-num">16</span><h2>Карманная версия</h2></div>
+      <div class="sec-head"><span class="sec-num">17</span><h2>Карманная версия</h2></div>
       <div class="pocket">
         <ul>
           <li>Сначала тело: сон, еда, движение. Потом решения.</li>
